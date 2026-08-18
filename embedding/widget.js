@@ -20,9 +20,10 @@
   const btnAddestra = document.getElementById("eb-addestra");
   const btnRicomincia = document.getElementById("eb-ricomincia");
   const btnRimescola = document.getElementById("eb-rimescola");
+  const btnClassica = document.getElementById("eb-classica");
   const btnAzzera = document.getElementById("eb-azzera");
   if (!tela || !stato || !elScelta || !elEsito || !btnAddestra ||
-      !btnRicomincia || !btnRimescola || !btnAzzera) return;
+      !btnRicomincia || !btnRimescola || !btnClassica || !btnAzzera) return;
 
   /* ---- il corpus minimo: 10 parole visibili, contesti nascosti ---- */
   const VISIBILI = ["re", "regina", "uomo", "donna", "caldo", "freddo", "brodo", "ghiaccio", "sole", "neve"];
@@ -68,6 +69,7 @@
   }
   let seme = 104729;             // il seme di casa: l'analogia regge
   let v = null, giri = 0, corsa = null, selezionate = [];
+  let sceltaVicini = null;       // la parola cliccata per i vicini
 
   function ricomincia(conSeme) {
     if (conSeme) seme = conSeme;
@@ -168,6 +170,27 @@
     const rgb = (c) => "rgb(" + c[0] + "," + c[1] + "," + c[2] + ")";
     g.setTransform(scala, 0, 0, scala, 0, 0);
     g.clearRect(0, 0, L, A);
+    // i vicini della parola cliccata: linee dalla parola alle piu' vicine
+    if (sceltaVicini) {
+      const vi = idx[sceltaVicini];
+      const vicini = viciniDi(sceltaVicini, 3);
+      g.strokeStyle = rgb(t.tenue); g.lineWidth = 1;
+      g.setLineDash([3, 3]);
+      for (const vv of vicini) {
+        g.beginPath();
+        g.moveTo(px(v[vi][0]), py(v[vi][1]));
+        g.lineTo(px(v[idx[vv]][0]), py(v[idx[vv]][1]));
+        g.stroke();
+      }
+      g.setLineDash([]);
+      // i cerchi dei vicini
+      g.fillStyle = rgb(t.tenue);
+      for (const vv of vicini) {
+        g.beginPath();
+        g.arc(px(v[idx[vv]][0]), py(v[idx[vv]][1]), 5, 0, 2 * Math.PI);
+        g.fill();
+      }
+    }
     // la parola piu' vicina alla selezione, se ce n'e' una
     const anal = calcolaAnalogia();
     if (anal) {
@@ -193,6 +216,16 @@
       g.fillText((scelta >= 0 ? (scelta + 1) + "·" : "") + p, x + 7, y - 6);
     }
   }
+  /* le k parole piu' vicine a p, senza contare p stessa */
+  function viciniDi(p, k) {
+    const i = idx[p];
+    return VISIBILI
+      .filter((q) => q !== p)
+      .map((q) => ({ q, d: Math.hypot(v[idx[q]][0] - v[i][0], v[idx[q]][1] - v[i][1]) }))
+      .sort((a, b) => a.d - b.d)
+      .slice(0, k)
+      .map((o) => o.q);
+  }
 
   /* ---- l'animazione dell'addestramento ---- */
   let inVista = true, daRidisegnare = false;
@@ -210,13 +243,13 @@
     else {
       corsa = null;
       btnAddestra.textContent = "Addestra";
-      stato.textContent = "La mappa si è disposta: le parole vicine si usano in contesti simili. Cliccate una parola per i suoi vicini, o tre parole per l'analogia (la prima meno la seconda più la terza).";
+      stato.textContent = "Fatto: le parole vicine si usano in contesti simili. Cliccate una parola e vedete chi le sta vicino.";
     }
   }
   function avvia() {
     if (corsa) { cancelAnimationFrame(corsa); corsa = null; btnAddestra.textContent = "Addestra"; return; }
     btnAddestra.textContent = "Ferma";
-    stato.textContent = "La mappa si sta disponendo… ogni giro avvicina le parole che co-occorrono e allontana le coppie mai vicine.";
+    stato.textContent = "La mappa si sta disponendo: le parole che si usano insieme si avvicinano…";
     corsa = requestAnimationFrame(giroDiCorsa);
   }
   btnAddestra.addEventListener("click", avvia);
@@ -224,8 +257,9 @@
     if (corsa) { cancelAnimationFrame(corsa); corsa = null; }
     ricomincia();
     selezionate = [];
+    sceltaVicini = null;
     btnAddestra.textContent = "Addestra";
-    stato.textContent = "Pesi nuovi, stesso seme (" + seme + "): la mappa riparte da zero. Premete «Addestra».";
+    stato.textContent = "Mappa nuova, stesso seme. Premete «Addestra» per vederla disporsi, o «La classica» per l'analogia.";
     disegna();
   });
   btnRimescola.addEventListener("click", () => {
@@ -233,18 +267,33 @@
     seme = (Math.random() * 1e9) | 0;
     ricomincia();
     selezionate = [];
+    sceltaVicini = null;
     btnAddestra.textContent = "Addestra";
-    stato.textContent = "Seme nuovo: " + seme + ". Riavvio la mappa da zero, poi addestratela.";
+    stato.textContent = "Seme nuovo: " + seme + ". Un'altra mappa possibile, un'altra geometria.";
     disegna();
   });
   btnAzzera.addEventListener("click", () => {
     selezionate = [];
-    elScelta.textContent = "Nessuna parola scelta.";
+    sceltaVicini = null;
+    elScelta.textContent = "Scegliete tre parole cliccandole (o usate «La classica»).";
     elEsito.textContent = "";
     disegna();
   });
+  btnClassica.addEventListener("click", () => {
+    selezionate = ["re", "uomo", "donna"];
+    sceltaVicini = null;
+    elScelta.textContent = "Analogia: re − uomo + donna = ?";
+    const anal = calcolaAnalogia();
+    elEsito.textContent = anal
+      ? "Il punto cade vicino a «" + anal.migliore + "». " +
+        (anal.migliore === "regina"
+          ? "La classica regge: re − uomo + donna ≈ regina."
+          : "Qui non regge: le analogie sono una regolarità, non una legge - e questo seme la mostra.")
+      : "";
+    disegna();
+  });
 
-  /* ---- clic sulle parole: vicini, poi l'analogia ---- */
+  /* ---- clic sulle parole: vicini subito, analogia con tre parole ---- */
   tela.addEventListener("click", (e) => {
     const r = tela.getBoundingClientRect();
     const mx = (e.clientX - r.left) / r.width * L;
@@ -256,21 +305,27 @@
       if (d < dist) { dist = d; migliore = p; }
     }
     if (dist > 30) return;
+    sceltaVicini = migliore;
+    const vicini = viciniDi(migliore, 3);
     if (selezionate.length < 3) {
       selezionate.push(migliore);
       if (selezionate.length < 3) {
-        elScelta.textContent = "Scelte: " + selezionate.map((p, i) => (i + 1) + "·" + p).join("  ") +
-          ". Ancora " + (3 - selezionate.length) + " parola" + (selezionate.length === 2 ? "" : "e") + ": la " + (selezionate.length + 1) + "ª.";
+        elScelta.textContent = "«" + migliore + "» sta vicino a: " + vicini.join(", ") +
+          ". È la " + (selezionate.length === 1 ? "prima" : "seconda") +
+          " parola dell'analogia - ne servono " + (3 - selezionate.length) + " (o premete «La classica»).";
       } else {
         elScelta.textContent = "Analogia: " + selezionate[0] + " − " + selezionate[1] + " + " + selezionate[2] + " = ?";
         const anal = calcolaAnalogia();
         elEsito.textContent = anal
-          ? "Il punto cade vicino a «" + anal.migliore + "» (distanza " + it(anal.dist) + "). " +
+          ? "Il punto cade vicino a «" + anal.migliore + "». " +
             (anal.migliore === "regina"
-              ? "Qui la geometria regge: come nella classica re − uomo + donna ≈ regina."
-              : "Qui non regge: l'analogia è una regolarità osservata, non una legge - e questo seme la mostra. Provate «Ricomincia» o un seme nuovo.")
+              ? "Qui la geometria regge, come nella classica."
+              : "Qui non regge: le analogie sono una regolarità, non una legge.")
           : "";
       }
+    } else {
+      elScelta.textContent = "«" + migliore + "» sta vicino a: " + vicini.join(", ") +
+        ". Per un'altra analogia, «Azzera» e ripartite.";
     }
     disegna();
   });
@@ -280,5 +335,5 @@
   ricomincia();
   for (let i = 0; i < 500; i++) unGiro(0.05);
   disegna();
-  stato.textContent = "La mappa è già disposta (seme " + seme + "): le parole vicine si usano in contesti simili. Cliccate una parola per i vicini, o tre parole per l'analogia. «Ricomincia» la rifà dall'inizio, «Rimescola» cambia seme.";
+  stato.textContent = "La mappa è pronta. Cliccate una parola: vedete chi le sta vicino. O premete «La classica»: re − uomo + donna.";
 })();

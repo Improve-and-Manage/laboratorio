@@ -155,23 +155,19 @@
     // lo stato
     if (r.articolo) {
       stato.textContent = r.mascherata
-        ? "I numeri qui sotto sono quelli dell'articolo, ma con la maschera causale la domanda di cane non può più guardare il futuro: per l'ultima parola non cambia nulla, per le altre cambierebbe tutto."
-        : "La domanda di cane: il peso maggiore (55%) va a morde. Più di metà della nuova rappresentazione di cane arriva dal valore di morde, e un altro sesto da gatto: il vettore che esce dall'attenzione sa di essere il cane che viene morso, e sa da chi.";
+        ? "I numeri sono quelli dell'articolo, ma la maschera causale toglie il futuro: per l'ultima parola non cambia nulla."
+        : "Il peso maggiore (55%) va a morde: la nuova rappresentazione di cane sa di essere il cane che viene morso - e sa da chi.";
     } else {
       const ordine = token.map((p, j) => ({ p, peso: r.pesi[j], j }))
         .sort((a, b2) => b2.peso - a.peso);
       const primi = ordine.slice(0, 3).filter((o) => o.peso > 0.02);
       if (r.mascherata) {
-        stato.textContent = "Con la maschera causale la domanda di " + token[domanda] +
-          " non vede il futuro: le posizioni dopo di lei hanno peso zero.";
+        stato.textContent = "Maschera causale attiva: la domanda di " + token[domanda] + " non vede le parole dopo di lei.";
       } else if (primi.length === 0) {
         stato.textContent = "La domanda di " + token[domanda] + " non trova nessuno da guardare.";
       } else {
-        stato.textContent = "La domanda di " + token[domanda] + ": il peso maggiore (" +
-          pct(primi[0].peso) + ") va a " + primi[0].p + ". La nuova rappresentazione nasce per " +
-          pct(primi[0].peso) + " da " + primi[0].p +
-          (primi[1] ? ", per " + pct(primi[1].peso) + " da " + primi[1].p : "") +
-          (primi[2] ? " e per " + pct(primi[2].peso) + " da " + primi[2].p : "") + ".";
+        stato.textContent = "Il peso maggiore (" + pct(primi[0].peso) + ") va a " + primi[0].p +
+          (primi[1] ? ", poi " + pct(primi[1].peso) + " a " + primi[1].p : "") + ".";
       }
     }
     // le righe dei pesi

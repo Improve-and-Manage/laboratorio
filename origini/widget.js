@@ -54,9 +54,8 @@
     // la bambina: a sinistra o a destra dello stimolo
     scena.classList.toggle("mb-bambina--sx", azioneScelta === 0);
     scena.classList.toggle("mb-bambina--dx", azioneScelta === 1);
-    bambina.textContent = azioneScelta === 0 ? "←" : "→";
-    elScelta.textContent = "La macchina-bambina sceglie di andare " +
-      (azioneScelta === 0 ? "a sinistra" : "a destra") + ".";
+    elScelta.textContent = "La macchina-bambina va " +
+      (azioneScelta === 0 ? "a sinistra" : "a destra") + ". Giusta o sbagliata?";
     // le barre
     const pS = proba(stimoloCorrente, 0), pD = proba(stimoloCorrente, 1);
     barraSx.style.width = (pS * 100).toFixed(1) + "%";
@@ -76,8 +75,8 @@
     btnPunizione.disabled = false;
     btnGiro.disabled = true;
     elStato.textContent = giri === 0
-      ? "Sono la macchina-bambina di Turing. Giudicate la mia scelta: ricompensa o punizione."
-      : "Giudicate anche questa scelta: ricompensa o punizione.";
+      ? "Sono la macchina-bambina di Turing. Giudicate la mia scelta: ✓ ricompensa, ✗ punizione."
+      : "Ecco la mia scelta. Giudicatela: ✓ o ✗.";
     resa();
   }
   function giudica(segno, parola) {
@@ -95,10 +94,10 @@
     if (stabile && !imparato) {
       imparato = true;
       const regola = STIMOLI.map((s) => s + " → " + (proba(s, 0) > 0.5 ? "sinistra" : "destra")).join(", ");
-      elStato.textContent = "La macchina-bambina ha imparato la vostra regola (" + regola +
-        "): premi e punizioni hanno cambiato le probabilità, come Turing aveva scritto nel 1950. Continuate a giudicare, o ricominciate.";
+      elStato.textContent = "Ho imparato la vostra regola (" + regola +
+        ")! Premi e punizioni hanno cambiato le probabilità - esattamente come Turing aveva scritto nel 1950. Continuate, o ricominciate.";
     } else {
-      elStato.textContent = parola + " Anche questa scelta è registrata: la prossima volta la probabilità sarà un po' diversa.";
+      elStato.textContent = parola;
     }
   }
   btnPremio.addEventListener("click", () => giudica(1, "Ricompensa: la probabilità di ripetere questa scelta sale."));

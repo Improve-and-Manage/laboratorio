@@ -237,17 +237,17 @@
     const nBlocchi = parseInt(elBlocchi.value, 10) || 1;
     let msg = "";
     if (!conResiduo && (conAtt || conMlp)) {
-      msg = "Senza la connessione residua il segnale non ha più la scorciatoia: è il guasto che il pezzo descrive, e i numeri lo pagano subito.";
+      msg = "Senza la scorciatoia il segnale si perde a ogni strato: è il guasto che il pezzo descrive.";
     } else if (!conAtt && !conMlp) {
-      msg = "Niente attenzione e niente MLP: il blocco è una scatola vuota, e il modello scrive senza relazioni né pensiero - solo il peso dell'uso delle lettere.";
+      msg = "Blocco vuoto: niente relazioni fra le parole, niente pensiero locale - resta solo il peso dell'uso delle lettere.";
     } else if (!conAtt) {
-      msg = "Senza attenzione ogni posizione pensa da sola: le parole non si legano più, e la frase si perde. Il modello sa ancora che lettera segue l'altra, non chi fa che cosa.";
+      msg = "Senza attenzione ogni parola pensa da sola: le frasi non si legano più.";
     } else if (!conMlp) {
-      msg = "Senza MLP le posizioni si guardano ma non pensano: le relazioni ci sono, il lavoro locale no, e la scrittura gira a vuoto.";
+      msg = "Senza MLP le parole si guardano ma non pensano: la scrittura gira a vuoto.";
     } else if (nBlocchi < M.cfg.n_layer) {
-      msg = "Blocchi ridotti a " + nBlocchi + " su " + M.cfg.n_layer + ": il modello è più povero ma il montaggio è intatto - è la stessa macchina, più corta.";
+      msg = nBlocchi + " blocchi su " + M.cfg.n_layer + ": stessa macchina, più corta.";
     } else {
-      msg = "Tutto acceso, come nel gioco della serie: il piccolo GPT continua lo stile della Commedia. Ora togliete un pezzo e vedete che cosa succede.";
+      msg = "Tutto acceso: il piccolo GPT continua lo stile della Commedia. Togliete un pezzo e guardate.";
     }
     elStato.textContent = msg;
   }

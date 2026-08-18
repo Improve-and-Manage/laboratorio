@@ -122,8 +122,8 @@
     const nota = radice.querySelector(".sc-nota");
     if (nota) {
       nota.textContent = doc
-        ? "La scheda documentata si legge fino in fondo: i numeri stanno lì e si possono verificare."
-        : "Scheda muta: dichiara capacità e valutazioni, tace architettura e taglia. Senza i numeri il conto non si fa - e questa è la differenza che il pezzo insegna a vedere.";
+        ? "Scheda documentata: i numeri stanno lì, si possono verificare. Ora spegnete la casella e guardate."
+        : "Scheda muta: capacità e valutazioni, niente architettura. Senza i numeri il conto non si fa - ed è la differenza che il pezzo insegna a vedere.";
     }
   }
   let barreCache = null;

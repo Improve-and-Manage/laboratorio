@@ -82,9 +82,7 @@
       elToken.appendChild(chip);
     }
     const totaliAttivi = attiviPerToken.reduce((a, r) => a + r.filter((x) => x > 0).length, 0);
-    elContatore.textContent = "Attivi: " + totaliAttivi + " su " + (attiviPerToken.length * ESPERTI.length) +
-      " possibili (" + attiviPerToken.length + " token × 6 esperti) - due per token, come il router del pezzo: " +
-      "DeepSeek ne attiva 37 su 671, Qwen 22 su 235.";
+    elContatore.textContent = "Due esperti per token, come i modelli del pezzo: DeepSeek ne attiva 37 su 671, Qwen 22 su 235.";
   }
   elApplica.addEventListener("click", instrada);
   elFrase.addEventListener("keydown", (e) => {
@@ -97,40 +95,38 @@
     const token = tokenLista;
     elCache.innerHTML = "";
     if (token.length === 0) return;
-    const rigaHeader = document.createElement("div");
-    rigaHeader.className = "mc-cache-riga mc-cache-riga--testa";
-    rigaHeader.innerHTML = "<span class=\"mc-cache-passo\">passo</span><span class=\"mc-cache-nome\">token</span><span class=\"mc-cache-conta\">senza cache</span><span class=\"mc-cache-conta\">con cache</span>";
-    elCache.appendChild(rigaHeader);
-    for (let i = 0; i < token.length; i++) {
-      const fatto = i < passo;
-      const riga = document.createElement("div");
-      riga.className = "mc-cache-riga" + (fatto ? " mc-cache-riga--fatto" : "");
-      const p = document.createElement("span");
-      p.className = "mc-cache-passo";
-      p.textContent = (i + 1);
-      const n = document.createElement("span");
-      n.className = "mc-cache-nome";
-      n.textContent = token[i];
-      const senza = document.createElement("span");
-      senza.className = "mc-cache-conta";
-      senza.textContent = fatto ? "ricalcola " + (i + 1) + " posizioni" : "–";
-      const con = document.createElement("span");
-      con.className = "mc-cache-conta";
-      con.textContent = fatto ? "calcola 1, rilegge " + i : "–";
-      riga.appendChild(p); riga.appendChild(n); riga.appendChild(senza); riga.appendChild(con);
-      elCache.appendChild(riga);
-    }
+    // i token come chip: si accendono uno alla volta
+    const rigaChip = document.createElement("div");
+    rigaChip.className = "mc-cache-chip";
+    token.forEach((t, i) => {
+      const chip = document.createElement("span");
+      chip.className = "mc-cache-token" + (i < passo ? " mc-cache-token--fatto" : "");
+      chip.textContent = t;
+      rigaChip.appendChild(chip);
+    });
+    elCache.appendChild(rigaChip);
+    // i due contatori, con le barre del lavoro rifatto
     if (passo === 0) {
-      elBilancio.textContent = "Premete «Genera»: a ogni passo si scrive un token, e la differenza si vede riga per riga.";
+      elBilancio.textContent = "Premete «Genera»: la frase si scrive un token alla volta, e vedete che cosa la cache risparmia.";
       return;
     }
     const n = token.length;
     const senzaTot = (n * (n + 1)) / 2;
     const conTot = n;
-    const memoria = passo * 2 * 8;   // K e V, 8 numeri fittizi per posizione
-    elBilancio.textContent = "A fine frase, senza cache: " + senzaTot + " posizioni ricalcolate in tutto (la somma 1+2+…+" + n +
-      "). Con la cache: " + conTot + " calcoli nuovi, e " + memoria + " numeri ricordati (" + passo +
-      " posizioni × chiave e valore). È il risparmio che il pezzo descrive - e che nanoGPT, per chiarezza, non usa.";
+    const lavoro = document.createElement("div");
+    lavoro.className = "mc-cache-lavoro";
+    const senza = document.createElement("div");
+    senza.className = "mc-cache-conto";
+    senza.innerHTML = "<span class=\"mc-cache-conto-nome\">senza cache</span><span class=\"mc-pista\"><span class=\"mc-piena mc-piena--tutta\"></span></span><span class=\"mc-cache-conto-v\">" + senzaTot + " posizioni rifatte</span>";
+    const con = document.createElement("div");
+    con.className = "mc-cache-conto";
+    const ricordati = passo * 2 * 8;
+    con.innerHTML = "<span class=\"mc-cache-conto-nome\">con cache</span><span class=\"mc-pista\"><span class=\"mc-piena mc-piena--poca\"></span></span><span class=\"mc-cache-conto-v\">" + conTot + " nuove, " + ricordati + " ricordate</span>";
+    lavoro.appendChild(senza);
+    lavoro.appendChild(con);
+    elCache.appendChild(lavoro);
+    elBilancio.textContent = "Senza cache ogni passo rifà tutto da capo (1+2+…+" + n + " = " + senzaTot +
+      "). Con la cache ogni passo calcola una posizione sola e rilegge le altre - il risparmio del pezzo, che nanoGPT per chiarezza non usa.";
   }
   function unPasso() {
     if (passo >= tokenLista.length) {

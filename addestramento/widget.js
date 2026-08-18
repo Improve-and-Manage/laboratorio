@@ -96,7 +96,7 @@
       if (i >= testo.length) {
         clearInterval(timer); timer = null;
         elTesto.classList.remove("ff-testo--scrive");
-        elStato.textContent = "Lo stesso prompt, il carattere di questa fase. Cambiate fase e guardate come cambia la risposta.";
+        elStato.textContent = "Lo stesso prompt, un altro carattere. Cambiate fase: la differenza è tutta qui.";
       }
     }, 12);
   }
