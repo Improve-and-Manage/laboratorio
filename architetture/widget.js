@@ -100,7 +100,7 @@
       else if (cosa === "memo") val.textContent = formattaGB(memoB);
       else if (cosa === "conto") val.textContent = formatta(contoN) + " per token";
       else if (cosa === "cache") val.textContent = formattaGB(cacheB);
-      else if (cosa === "rapporto") val.textContent = stato.natura === "misto" ? "1 su " + Math.round(100 / pctAttivi) : "—";
+      else if (cosa === "rapporto") val.textContent = stato.natura === "misto" ? "1 su " + Math.round(100 / pctAttivi) : "-";
     }
     // le barre, proporzionali al log dei conti
     const barre = radieceBarre();
@@ -115,15 +115,15 @@
     }
     // l'etichetta dei parametri attivi
     elTotV.textContent = formatta(tot);
-    elAttiviV.textContent = stato.natura === "misto" ? it(pctAttivi, 0) + "% dei totali" : "—";
+    elAttiviV.textContent = stato.natura === "misto" ? it(pctAttivi, 0) + "% dei totali" : "-";
     elFinV.textContent = fin.toLocaleString("it-IT");
     elAttiviBox.classList.toggle("sc-nascosto", stato.natura !== "misto");
-    elRapporto.textContent = stato.natura === "misto" ? "1 su " + Math.round(100 / pctAttivi) : "—";
+    elRapporto.textContent = stato.natura === "misto" ? "1 su " + Math.round(100 / pctAttivi) : "-";
     const nota = radice.querySelector(".sc-nota");
     if (nota) {
       nota.textContent = doc
         ? "Scheda documentata: i numeri stanno lì, si possono verificare. Ora spegnete la casella e guardate."
-        : "Scheda muta: capacità e valutazioni, niente architettura. Senza i numeri il conto non si fa - ed è la differenza che il pezzo insegna a vedere.";
+        : "Scheda muta: capacità e valutazioni, niente architettura. Senza i numeri il conto non si fa - è la differenza che questo pezzo insegna a vedere.";
     }
   }
   let barreCache = null;

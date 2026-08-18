@@ -24,7 +24,7 @@
   const PRESET_DOMANDE = {
     capitale: "Qual è la capitale della Francia?",
     somma: "Quanto fa 23 + 19?",
-    poesia: "Scrivimi una poesia di due versi sul mare.",
+    poesia: "Scrivetemi una poesia di due versi sul mare.",
   };
   const RISPOSTE = {
     capitale: {
@@ -40,7 +40,7 @@
       rlvr: "Calcolo: 23 + 19. Scompongo: 20 + 10 = 30, e 3 + 9 = 12. Poi 30 + 12 = 42. Verifico con un altro metodo: 23 + 20 = 43, meno 1 = 42. La risposta è 42. Aha, ci sono arrivato!",
     },
     poesia: {
-      pre: "Scrivimi una poesia di due versi sul mare. Una poesia di due versi sul mare, e il mare è grande, e il mare è blu, e…",
+      pre: "Scrivetemi una poesia di due versi sul mare. Una poesia di due versi sul mare, e il mare è grande, e il mare è blu, e…",
       sft: "Il mare respira piano sulla riva, / e porta con sé il ricordo della sera.",
       rlhf: "Ecco a voi, con tutto il mio affetto: Il mare respira piano sulla riva, / e porta con sé il ricordo della sera. Spero vi piaccia!",
       rlvr: "Obiettivo: una poesia di due versi sul mare. Vincoli: due versi, tema mare. Penso a un'immagine: il respiro del mare, la sera. Provo: «Il mare respira piano sulla riva, / e porta con sé il ricordo della sera». Verifico: due versi, tema rispettato. Aha, ci sono arrivato!",

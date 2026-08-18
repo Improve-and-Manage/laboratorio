@@ -243,7 +243,7 @@
     else {
       corsa = null;
       btnAddestra.textContent = "Addestra";
-      stato.textContent = "Fatto: le parole vicine si usano in contesti simili. Cliccate una parola e vedete chi le sta vicino.";
+      stato.textContent = "Fatto: le parole vicine si usano in contesti simili. Cliccate una parola e vedete quali le stanno vicino.";
     }
   }
   function avvia() {
@@ -269,7 +269,7 @@
     selezionate = [];
     sceltaVicini = null;
     btnAddestra.textContent = "Addestra";
-    stato.textContent = "Seme nuovo: " + seme + ". Un'altra mappa possibile, un'altra geometria.";
+    stato.textContent = "Seme nuovo: " + seme + ". La mappa riparte da una disposizione diversa, e l'analogia può cambiare.";
     disegna();
   });
   btnAzzera.addEventListener("click", () => {
@@ -335,5 +335,5 @@
   ricomincia();
   for (let i = 0; i < 500; i++) unGiro(0.05);
   disegna();
-  stato.textContent = "La mappa è pronta. Cliccate una parola: vedete chi le sta vicino. O premete «La classica»: re − uomo + donna.";
+  stato.textContent = "La mappa è pronta. Cliccate una parola: vedete quali le stanno vicino. O premete «La classica»: re − uomo + donna.";
 })();
