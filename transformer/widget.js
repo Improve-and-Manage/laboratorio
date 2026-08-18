@@ -306,5 +306,8 @@
   elGenera.disabled = true;
   elStato.textContent = "Carico il piccolo GPT della serie…";
   elTesto.textContent = "";
-  carica();
+  carica().catch((e) => {
+    elStato.textContent = "Non riesco a caricare il modello: " + e.message +
+      ". Ricaricate la pagina per riprovare.";
+  });
 })();

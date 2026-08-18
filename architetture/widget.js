@@ -24,12 +24,8 @@
   const elFinV = document.getElementById("sc-finestra-v");
   const elDoc = document.getElementById("sc-documentato");
   const righe = radice.querySelectorAll("[data-scheda]");
-  const elMemo = document.getElementById("sc-memo");
-  const elConto = document.getElementById("sc-conto");
-  const elCache = document.getElementById("sc-cache");
-  const elRapporto = document.getElementById("sc-rapporto");
   if (!elTot || !elTotV || !elAttivi || !elAttiviV || !elAttiviBox ||
-      !elFin || !elFinV || !elDoc || !elMemo || !elConto || !elCache || !elRapporto) return;
+      !elFin || !elFinV || !elDoc) return;
 
   const stato = {
     forma: "decoder",
@@ -118,7 +114,6 @@
     elAttiviV.textContent = stato.natura === "misto" ? it(pctAttivi, 0) + "% dei totali" : "-";
     elFinV.textContent = fin.toLocaleString("it-IT");
     elAttiviBox.classList.toggle("sc-nascosto", stato.natura !== "misto");
-    elRapporto.textContent = stato.natura === "misto" ? "1 su " + Math.round(100 / pctAttivi) : "-";
     const nota = radice.querySelector(".sc-nota");
     if (nota) {
       nota.textContent = doc
