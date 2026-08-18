@@ -49,6 +49,79 @@ byte (come GPT-2) e WordPiece.
 
 - `widget.js` — il widget (si aggancia agli elementi `em-*` della pagina)
 
+### `attenzione/` — "Chi guarda chi"
+
+Dal pezzo "Dai vettori alle relazioni: l'attenzione". Si scrive una frase, si
+clicca una parola - quella fa la domanda - e si vedono i pesi di attenzione
+verso le altre parole: punteggi, softmax e somma pesata dei valori. Per la
+frase di casa dell'articolo i numeri sono quelli del pezzo; per le altre frasi
+sono una simulazione dichiarata (il conto è vero, i numeri no).
+
+- `widget.js` — il widget (si aggancia agli elementi `at-*` della pagina)
+
+### `embedding/` — lo spazio dei significati
+
+Dal pezzo "Dai token ai vettori: l'embedding". Un corpus minimo italiano e
+l'addestramento che dispone le parole davanti al lettore: vicino chi si usa in
+contesti simili, lontano chi non si incontra mai. Si clicca una parola per i
+vicini, e tre parole per comporre l'analogia `a − b + c`: il punto cade dove
+la geometria della mappa dice. Mappa illustrativa, non misurata - come il
+pezzo dichiara delle analogie.
+
+- `widget.js` — il widget (si aggancia agli elementi `eb-*` della pagina)
+
+### `transformer/` — "Smonta il modello"
+
+Dal pezzo "Il transformer aperto col cacciavite". Il piccolo GPT della serie
+(4 blocchi, 4 teste, 128 dimensioni, 83 caratteri, quantizzato int8) genera
+testo con un seme fisso, e il lettore toglie pezzi - connessione residua,
+attenzione, MLP, blocchi - per vedere come la generazione si rompe. Stessi
+pesi e stesso seme: cambia solo quello che si smonta.
+
+- `widget.js` — il widget (si aggancia agli elementi `sm-*` della pagina)
+
+Nota: `widget.js` carica il modello da `/applicazioni/piccolo-gpt/`
+(manifest e pesi, in questo repository nella cartella `piccolo-gpt/`).
+
+### `moe/` — il router e la memoria
+
+Dal pezzo "Le evoluzioni MoE e la cache di chiavi e valori". Due pannelli: il
+router instrada ogni token della frase del lettore a due esperti su sei (regole
+dichiarate, non il router vero: è la meccanica personificata); la cache mostra
+la generazione passo passo, e la differenza fra ricalcolare tutto e ricordare.
+
+- `widget.js` — il widget (si aggancia agli elementi `mc-*` della pagina)
+
+### `architetture/` — "Costruisci la scheda"
+
+Dal pezzo "Le architetture a confronto". Si monta un modello: forma, natura
+densa o mista, taglie, attenzione, finestra - e il widget fa il conto che la
+serie insegna: memoria dei pesi, moltiplicazioni per token, cache. I preset
+sono i modelli del pezzo coi numeri dichiarati nei rapporti (GPT-3, GPT-2,
+DeepSeek-V3, Qwen3-235B); si può spegnere la documentazione e guardare che
+cosa resta leggibile.
+
+- `widget.js` — il widget (si aggancia agli elementi `sc-*` della pagina)
+
+### `origini/` — la macchina-bambina
+
+Dal pezzo "Le origini del machine learning". La scena di Turing del 1950 presa
+alla lettera: una macchina-bambina sceglie fra due azioni, il lettore giudica
+ogni scelta con una ricompensa o una punizione, e le probabilità si regolano
+da sole. Se il lettore è coerente, la macchina impara la sua regola.
+
+- `widget.js` — il widget (si aggancia agli elementi `mb-*` della pagina)
+
+### `addestramento/` — le quattro fasi
+
+Dall'ultimo pezzo della serie, "L'addestramento che fa la differenza". Lo
+stesso prompt passato di fase in fase: preaddestrato (continua il testo),
+istruito (risponde), rifinito dalle preferenze (il gusto umano), rinforzato su
+ricompense verificabili (ragiona prima di rispondere). Le risposte sono una
+simulazione dichiarata; la differenza di carattere è quella del pezzo.
+
+- `widget.js` — il widget (si aggancia agli elementi `ff-*` della pagina)
+
 ### `motori/` — "Quale motore per te"
 
 Dal pezzo "I motori che eseguono i pesi". I motori di esecuzione (llama.cpp,
@@ -77,9 +150,10 @@ del modello nella loro forma canonica.
 
 Ogni widget è pensato per essere incorporato in una pagina: il file `widget.js`
 si carica con `<script defer>` e cerca i propri elementi nel DOM (gli id
-`pct-*`, `rm-*`, `em-*`, `mot-*` secondo il widget). Serve la tabella dei
-colori del tema del blog (`--color-*`, `--space-*`, `--font-mono`,
-`--hairline`), ma ogni widget dichiara i propri stili in un `<style>` inline.
+`pct-*`, `rm-*`, `em-*`, `at-*`, `eb-*`, `sm-*`, `mc-*`, `sc-*`, `mb-*`,
+`ff-*`, `mot-*` secondo il widget). Serve la tabella dei colori del tema del
+blog (`--color-*`, `--space-*`, `--font-mono`, `--hairline`), ma ogni widget
+dichiara i propri stili in un `<style>` inline.
 
 Nessun widget fa chiamate di rete oltre al caricamento dei propri dati (i pesi
 del percettrone, il modello del piccolo GPT): i calcoli avvengono tutti in
