@@ -1,0 +1,22 @@
+cff-version: 1.2.0
+message: "Se usi questo conto, citalo così."
+title: "Dove lavorano i laureati recenti italiani dopo ChatGPT: un primo conto sui microdati Istat"
+authors:
+  - family-names: Malpezzi
+    given-names: Fabio
+    affiliation: "Improve and Manage"
+date-released: 2026-10-01
+version: "0.1.0"
+license: MIT
+url: "https://www.improveandmanage.com"
+abstract: >-
+  Conto descrittivo sui file mIcro.STAT della Rilevazione sulle forze di lavoro dell'Istat,
+  2021-2025: occupazione, retribuzione in decili e grande gruppo professionale dei laureati con
+  titolo da 0 a 2 anni, per area disciplinare, prima e dopo la diffusione di ChatGPT.
+references:
+  - type: data
+    title: "Rilevazione sulle forze di lavoro, file mIcro.STAT ad uso pubblico"
+    authors:
+      - name: "Istat - Istituto nazionale di statistica"
+    url: "https://www.istat.it/microdati/rilevazione-sulle-forze-di-lavoro-dati-trasversali-trimestrali/"
+    license: CC-BY-3.0

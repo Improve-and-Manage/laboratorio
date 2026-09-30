@@ -1,0 +1,393 @@
+universo,gruppo,periodo,misura,valore,ic_basso,ic_alto,osservazioni,occupati_osservati
+non iscritti a un corso,ICT e ingegneria dell'informazione,2021-2022,occupati,0.7766,0.7404,0.811,878,675
+non iscritti a un corso,ICT e ingegneria dell'informazione,2021-2022,dirigenti e intellettuali (1-2),0.6345,0.5879,0.682,878,675
+non iscritti a un corso,ICT e ingegneria dell'informazione,2021-2022,tecniche (3),0.2589,0.2151,0.3045,878,675
+non iscritti a un corso,ICT e ingegneria dell'informazione,2021-2022,"ufficio, commercio e servizi (4-5)",0.0804,0.0573,0.1088,878,675
+non iscritti a un corso,ICT e ingegneria dell'informazione,2021-2022,manuali (6-8),0.0246,0.0144,0.036,878,675
+non iscritti a un corso,ICT e ingegneria dell'informazione,2021-2022,decili bassi della retribuzione (1-3),0.1864,0.1478,0.2274,878,675
+non iscritti a un corso,ICT e ingegneria dell'informazione,2021-2022,decile medio della retribuzione (in decimi),0.5853,0.5597,0.6114,878,675
+non iscritti a un corso,ICT e ingegneria dell'informazione,2023-2025,occupati,0.8356,0.81,0.862,1175,984
+non iscritti a un corso,ICT e ingegneria dell'informazione,2023-2025,dirigenti e intellettuali (1-2),0.6139,0.574,0.6509,1175,984
+non iscritti a un corso,ICT e ingegneria dell'informazione,2023-2025,tecniche (3),0.2655,0.2328,0.2992,1175,984
+non iscritti a un corso,ICT e ingegneria dell'informazione,2023-2025,"ufficio, commercio e servizi (4-5)",0.084,0.0605,0.1087,1175,984
+non iscritti a un corso,ICT e ingegneria dell'informazione,2023-2025,manuali (6-8),0.0358,0.0237,0.0496,1175,984
+non iscritti a un corso,ICT e ingegneria dell'informazione,2023-2025,decili bassi della retribuzione (1-3),0.1348,0.0951,0.1778,1175,984
+non iscritti a un corso,ICT e ingegneria dell'informazione,2023-2025,decile medio della retribuzione (in decimi),0.6007,0.5754,0.6268,1175,984
+non iscritti a un corso,ICT e ingegneria dell'informazione,2021,occupati,0.7914,,,425,329
+non iscritti a un corso,ICT e ingegneria dell'informazione,2021,dirigenti e intellettuali (1-2),0.6661,,,425,329
+non iscritti a un corso,ICT e ingegneria dell'informazione,2021,tecniche (3),0.2689,,,425,329
+non iscritti a un corso,ICT e ingegneria dell'informazione,2021,"ufficio, commercio e servizi (4-5)",0.047,,,425,329
+non iscritti a un corso,ICT e ingegneria dell'informazione,2021,manuali (6-8),0.0142,,,425,329
+non iscritti a un corso,ICT e ingegneria dell'informazione,2021,decili bassi della retribuzione (1-3),0.1972,,,425,329
+non iscritti a un corso,ICT e ingegneria dell'informazione,2021,decile medio della retribuzione (in decimi),0.5726,,,425,329
+non iscritti a un corso,ICT e ingegneria dell'informazione,2022,occupati,0.765,,,453,346
+non iscritti a un corso,ICT e ingegneria dell'informazione,2022,dirigenti e intellettuali (1-2),0.6088,,,453,346
+non iscritti a un corso,ICT e ingegneria dell'informazione,2022,tecniche (3),0.2506,,,453,346
+non iscritti a un corso,ICT e ingegneria dell'informazione,2022,"ufficio, commercio e servizi (4-5)",0.1076,,,453,346
+non iscritti a un corso,ICT e ingegneria dell'informazione,2022,manuali (6-8),0.033,,,453,346
+non iscritti a un corso,ICT e ingegneria dell'informazione,2022,decili bassi della retribuzione (1-3),0.1778,,,453,346
+non iscritti a un corso,ICT e ingegneria dell'informazione,2022,decile medio della retribuzione (in decimi),0.5953,,,453,346
+non iscritti a un corso,ICT e ingegneria dell'informazione,2023,occupati,0.8227,,,454,380
+non iscritti a un corso,ICT e ingegneria dell'informazione,2023,dirigenti e intellettuali (1-2),0.6555,,,454,380
+non iscritti a un corso,ICT e ingegneria dell'informazione,2023,tecniche (3),0.2493,,,454,380
+non iscritti a un corso,ICT e ingegneria dell'informazione,2023,"ufficio, commercio e servizi (4-5)",0.0533,,,454,380
+non iscritti a un corso,ICT e ingegneria dell'informazione,2023,manuali (6-8),0.0419,,,454,380
+non iscritti a un corso,ICT e ingegneria dell'informazione,2023,decili bassi della retribuzione (1-3),0.1348,,,454,380
+non iscritti a un corso,ICT e ingegneria dell'informazione,2023,decile medio della retribuzione (in decimi),0.6007,,,454,380
+non iscritti a un corso,ICT e ingegneria dell'informazione,2024,occupati,0.8374,,,366,305
+non iscritti a un corso,ICT e ingegneria dell'informazione,2024,dirigenti e intellettuali (1-2),0.5929,,,366,305
+non iscritti a un corso,ICT e ingegneria dell'informazione,2024,tecniche (3),0.2931,,,366,305
+non iscritti a un corso,ICT e ingegneria dell'informazione,2024,"ufficio, commercio e servizi (4-5)",0.0728,,,366,305
+non iscritti a un corso,ICT e ingegneria dell'informazione,2024,manuali (6-8),0.0388,,,366,305
+non iscritti a un corso,ICT e ingegneria dell'informazione,2024,decili bassi della retribuzione (1-3),nan,,,366,305
+non iscritti a un corso,ICT e ingegneria dell'informazione,2024,decile medio della retribuzione (in decimi),nan,,,366,305
+non iscritti a un corso,ICT e ingegneria dell'informazione,2025,occupati,0.8496,,,355,299
+non iscritti a un corso,ICT e ingegneria dell'informazione,2025,dirigenti e intellettuali (1-2),0.587,,,355,299
+non iscritti a un corso,ICT e ingegneria dell'informazione,2025,tecniche (3),0.2551,,,355,299
+non iscritti a un corso,ICT e ingegneria dell'informazione,2025,"ufficio, commercio e servizi (4-5)",0.1327,,,355,299
+non iscritti a un corso,ICT e ingegneria dell'informazione,2025,manuali (6-8),0.0252,,,355,299
+non iscritti a un corso,ICT e ingegneria dell'informazione,2025,decili bassi della retribuzione (1-3),nan,,,355,299
+non iscritti a un corso,ICT e ingegneria dell'informazione,2025,decile medio della retribuzione (in decimi),nan,,,355,299
+non iscritti a un corso,"Economia, diritto, scienze sociali, lettere",2021-2022,occupati,0.6178,0.5984,0.6369,3711,2210
+non iscritti a un corso,"Economia, diritto, scienze sociali, lettere",2021-2022,dirigenti e intellettuali (1-2),0.3208,0.2964,0.345,3711,2210
+non iscritti a un corso,"Economia, diritto, scienze sociali, lettere",2021-2022,tecniche (3),0.311,0.2854,0.3358,3711,2210
+non iscritti a un corso,"Economia, diritto, scienze sociali, lettere",2021-2022,"ufficio, commercio e servizi (4-5)",0.3233,0.2975,0.3478,3711,2210
+non iscritti a un corso,"Economia, diritto, scienze sociali, lettere",2021-2022,manuali (6-8),0.0269,0.0191,0.0361,3711,2210
+non iscritti a un corso,"Economia, diritto, scienze sociali, lettere",2021-2022,decili bassi della retribuzione (1-3),0.3713,0.3458,0.3972,3711,2210
+non iscritti a un corso,"Economia, diritto, scienze sociali, lettere",2021-2022,decile medio della retribuzione (in decimi),0.4915,0.4759,0.5081,3711,2210
+non iscritti a un corso,"Economia, diritto, scienze sociali, lettere",2023-2025,occupati,0.7014,0.6857,0.717,4788,3306
+non iscritti a un corso,"Economia, diritto, scienze sociali, lettere",2023-2025,dirigenti e intellettuali (1-2),0.3553,0.3342,0.3781,4788,3306
+non iscritti a un corso,"Economia, diritto, scienze sociali, lettere",2023-2025,tecniche (3),0.2621,0.2434,0.2814,4788,3306
+non iscritti a un corso,"Economia, diritto, scienze sociali, lettere",2023-2025,"ufficio, commercio e servizi (4-5)",0.3445,0.3238,0.3656,4788,3306
+non iscritti a un corso,"Economia, diritto, scienze sociali, lettere",2023-2025,manuali (6-8),0.0219,0.0164,0.0275,4788,3306
+non iscritti a un corso,"Economia, diritto, scienze sociali, lettere",2023-2025,decili bassi della retribuzione (1-3),0.3235,0.2891,0.3601,4788,3306
+non iscritti a un corso,"Economia, diritto, scienze sociali, lettere",2023-2025,decile medio della retribuzione (in decimi),0.5232,0.5005,0.5461,4788,3306
+non iscritti a un corso,"Economia, diritto, scienze sociali, lettere",2021,occupati,0.5859,,,1953,1092
+non iscritti a un corso,"Economia, diritto, scienze sociali, lettere",2021,dirigenti e intellettuali (1-2),0.3304,,,1953,1092
+non iscritti a un corso,"Economia, diritto, scienze sociali, lettere",2021,tecniche (3),0.3039,,,1953,1092
+non iscritti a un corso,"Economia, diritto, scienze sociali, lettere",2021,"ufficio, commercio e servizi (4-5)",0.3246,,,1953,1092
+non iscritti a un corso,"Economia, diritto, scienze sociali, lettere",2021,manuali (6-8),0.0261,,,1953,1092
+non iscritti a un corso,"Economia, diritto, scienze sociali, lettere",2021,decili bassi della retribuzione (1-3),0.3921,,,1953,1092
+non iscritti a un corso,"Economia, diritto, scienze sociali, lettere",2021,decile medio della retribuzione (in decimi),0.4959,,,1953,1092
+non iscritti a un corso,"Economia, diritto, scienze sociali, lettere",2022,occupati,0.6459,,,1758,1118
+non iscritti a un corso,"Economia, diritto, scienze sociali, lettere",2022,dirigenti e intellettuali (1-2),0.3132,,,1758,1118
+non iscritti a un corso,"Economia, diritto, scienze sociali, lettere",2022,tecniche (3),0.3167,,,1758,1118
+non iscritti a un corso,"Economia, diritto, scienze sociali, lettere",2022,"ufficio, commercio e servizi (4-5)",0.3222,,,1758,1118
+non iscritti a un corso,"Economia, diritto, scienze sociali, lettere",2022,manuali (6-8),0.0274,,,1758,1118
+non iscritti a un corso,"Economia, diritto, scienze sociali, lettere",2022,decili bassi della retribuzione (1-3),0.3551,,,1758,1118
+non iscritti a un corso,"Economia, diritto, scienze sociali, lettere",2022,decile medio della retribuzione (in decimi),0.4881,,,1758,1118
+non iscritti a un corso,"Economia, diritto, scienze sociali, lettere",2023,occupati,0.6709,,,1803,1211
+non iscritti a un corso,"Economia, diritto, scienze sociali, lettere",2023,dirigenti e intellettuali (1-2),0.3401,,,1803,1211
+non iscritti a un corso,"Economia, diritto, scienze sociali, lettere",2023,tecniche (3),0.2578,,,1803,1211
+non iscritti a un corso,"Economia, diritto, scienze sociali, lettere",2023,"ufficio, commercio e servizi (4-5)",0.3614,,,1803,1211
+non iscritti a un corso,"Economia, diritto, scienze sociali, lettere",2023,manuali (6-8),0.0187,,,1803,1211
+non iscritti a un corso,"Economia, diritto, scienze sociali, lettere",2023,decili bassi della retribuzione (1-3),0.3235,,,1803,1211
+non iscritti a un corso,"Economia, diritto, scienze sociali, lettere",2023,decile medio della retribuzione (in decimi),0.5232,,,1803,1211
+non iscritti a un corso,"Economia, diritto, scienze sociali, lettere",2024,occupati,0.7266,,,1602,1144
+non iscritti a un corso,"Economia, diritto, scienze sociali, lettere",2024,dirigenti e intellettuali (1-2),0.3481,,,1602,1144
+non iscritti a un corso,"Economia, diritto, scienze sociali, lettere",2024,tecniche (3),0.2557,,,1602,1144
+non iscritti a un corso,"Economia, diritto, scienze sociali, lettere",2024,"ufficio, commercio e servizi (4-5)",0.3537,,,1602,1144
+non iscritti a un corso,"Economia, diritto, scienze sociali, lettere",2024,manuali (6-8),0.0261,,,1602,1144
+non iscritti a un corso,"Economia, diritto, scienze sociali, lettere",2024,decili bassi della retribuzione (1-3),nan,,,1602,1144
+non iscritti a un corso,"Economia, diritto, scienze sociali, lettere",2024,decile medio della retribuzione (in decimi),nan,,,1602,1144
+non iscritti a un corso,"Economia, diritto, scienze sociali, lettere",2025,occupati,0.7075,,,1383,951
+non iscritti a un corso,"Economia, diritto, scienze sociali, lettere",2025,dirigenti e intellettuali (1-2),0.3813,,,1383,951
+non iscritti a un corso,"Economia, diritto, scienze sociali, lettere",2025,tecniche (3),0.2747,,,1383,951
+non iscritti a un corso,"Economia, diritto, scienze sociali, lettere",2025,"ufficio, commercio e servizi (4-5)",0.314,,,1383,951
+non iscritti a un corso,"Economia, diritto, scienze sociali, lettere",2025,manuali (6-8),0.0204,,,1383,951
+non iscritti a un corso,"Economia, diritto, scienze sociali, lettere",2025,decili bassi della retribuzione (1-3),nan,,,1383,951
+non iscritti a un corso,"Economia, diritto, scienze sociali, lettere",2025,decile medio della retribuzione (in decimi),nan,,,1383,951
+non iscritti a un corso,Sanità e insegnamento,2021-2022,occupati,0.7798,0.7551,0.8054,1764,1382
+non iscritti a un corso,Sanità e insegnamento,2021-2022,dirigenti e intellettuali (1-2),0.4236,0.3899,0.4568,1764,1382
+non iscritti a un corso,Sanità e insegnamento,2021-2022,tecniche (3),0.4982,0.4642,0.5302,1764,1382
+non iscritti a un corso,Sanità e insegnamento,2021-2022,"ufficio, commercio e servizi (4-5)",0.0614,0.0458,0.0789,1764,1382
+non iscritti a un corso,Sanità e insegnamento,2021-2022,manuali (6-8),0.0157,0.0084,0.0239,1764,1382
+non iscritti a un corso,Sanità e insegnamento,2021-2022,decili bassi della retribuzione (1-3),0.2771,0.2444,0.3131,1764,1382
+non iscritti a un corso,Sanità e insegnamento,2021-2022,decile medio della retribuzione (in decimi),0.5457,0.5265,0.5648,1764,1382
+non iscritti a un corso,Sanità e insegnamento,2023-2025,occupati,0.819,0.8002,0.8377,2287,1882
+non iscritti a un corso,Sanità e insegnamento,2023-2025,dirigenti e intellettuali (1-2),0.4327,0.4042,0.4615,2287,1882
+non iscritti a un corso,Sanità e insegnamento,2023-2025,tecniche (3),0.4759,0.4484,0.5061,2287,1882
+non iscritti a un corso,Sanità e insegnamento,2023-2025,"ufficio, commercio e servizi (4-5)",0.0808,0.0652,0.0966,2287,1882
+non iscritti a un corso,Sanità e insegnamento,2023-2025,manuali (6-8),0.0091,0.0034,0.0162,2287,1882
+non iscritti a un corso,Sanità e insegnamento,2023-2025,decili bassi della retribuzione (1-3),0.2516,0.2093,0.2935,2287,1882
+non iscritti a un corso,Sanità e insegnamento,2023-2025,decile medio della retribuzione (in decimi),0.5619,0.5374,0.5859,2287,1882
+non iscritti a un corso,Sanità e insegnamento,2021,occupati,0.7904,,,915,715
+non iscritti a un corso,Sanità e insegnamento,2021,dirigenti e intellettuali (1-2),0.4089,,,915,715
+non iscritti a un corso,Sanità e insegnamento,2021,tecniche (3),0.5127,,,915,715
+non iscritti a un corso,Sanità e insegnamento,2021,"ufficio, commercio e servizi (4-5)",0.0662,,,915,715
+non iscritti a un corso,Sanità e insegnamento,2021,manuali (6-8),0.0123,,,915,715
+non iscritti a un corso,Sanità e insegnamento,2021,decili bassi della retribuzione (1-3),0.2852,,,915,715
+non iscritti a un corso,Sanità e insegnamento,2021,decile medio della retribuzione (in decimi),0.5376,,,915,715
+non iscritti a un corso,Sanità e insegnamento,2022,occupati,0.7715,,,849,667
+non iscritti a un corso,Sanità e insegnamento,2022,dirigenti e intellettuali (1-2),0.4353,,,849,667
+non iscritti a un corso,Sanità e insegnamento,2022,tecniche (3),0.4867,,,849,667
+non iscritti a un corso,Sanità e insegnamento,2022,"ufficio, commercio e servizi (4-5)",0.0577,,,849,667
+non iscritti a un corso,Sanità e insegnamento,2022,manuali (6-8),0.0185,,,849,667
+non iscritti a un corso,Sanità e insegnamento,2022,decili bassi della retribuzione (1-3),0.2712,,,849,667
+non iscritti a un corso,Sanità e insegnamento,2022,decile medio della retribuzione (in decimi),0.5516,,,849,667
+non iscritti a un corso,Sanità e insegnamento,2023,occupati,0.8045,,,846,676
+non iscritti a un corso,Sanità e insegnamento,2023,dirigenti e intellettuali (1-2),0.3899,,,846,676
+non iscritti a un corso,Sanità e insegnamento,2023,tecniche (3),0.5127,,,846,676
+non iscritti a un corso,Sanità e insegnamento,2023,"ufficio, commercio e servizi (4-5)",0.0876,,,846,676
+non iscritti a un corso,Sanità e insegnamento,2023,manuali (6-8),0.0054,,,846,676
+non iscritti a un corso,Sanità e insegnamento,2023,decili bassi della retribuzione (1-3),0.2516,,,846,676
+non iscritti a un corso,Sanità e insegnamento,2023,decile medio della retribuzione (in decimi),0.5619,,,846,676
+non iscritti a un corso,Sanità e insegnamento,2024,occupati,0.8087,,,717,586
+non iscritti a un corso,Sanità e insegnamento,2024,dirigenti e intellettuali (1-2),0.4378,,,717,586
+non iscritti a un corso,Sanità e insegnamento,2024,tecniche (3),0.4764,,,717,586
+non iscritti a un corso,Sanità e insegnamento,2024,"ufficio, commercio e servizi (4-5)",0.0797,,,717,586
+non iscritti a un corso,Sanità e insegnamento,2024,manuali (6-8),0.0062,,,717,586
+non iscritti a un corso,Sanità e insegnamento,2024,decili bassi della retribuzione (1-3),nan,,,717,586
+non iscritti a un corso,Sanità e insegnamento,2024,decile medio della retribuzione (in decimi),nan,,,717,586
+non iscritti a un corso,Sanità e insegnamento,2025,occupati,0.8435,,,724,620
+non iscritti a un corso,Sanità e insegnamento,2025,dirigenti e intellettuali (1-2),0.4696,,,724,620
+non iscritti a un corso,Sanità e insegnamento,2025,tecniche (3),0.4398,,,724,620
+non iscritti a un corso,Sanità e insegnamento,2025,"ufficio, commercio e servizi (4-5)",0.0752,,,724,620
+non iscritti a un corso,Sanità e insegnamento,2025,manuali (6-8),0.0154,,,724,620
+non iscritti a un corso,Sanità e insegnamento,2025,decili bassi della retribuzione (1-3),nan,,,724,620
+non iscritti a un corso,Sanità e insegnamento,2025,decile medio della retribuzione (in decimi),nan,,,724,620
+non iscritti a un corso,Altre aree,2021-2022,occupati,0.6428,0.6154,0.6672,2067,1248
+non iscritti a un corso,Altre aree,2021-2022,dirigenti e intellettuali (1-2),0.503,0.467,0.5368,2067,1248
+non iscritti a un corso,Altre aree,2021-2022,tecniche (3),0.2773,0.2489,0.3091,2067,1248
+non iscritti a un corso,Altre aree,2021-2022,"ufficio, commercio e servizi (4-5)",0.1637,0.14,0.1914,2067,1248
+non iscritti a un corso,Altre aree,2021-2022,manuali (6-8),0.0365,0.0252,0.048,2067,1248
+non iscritti a un corso,Altre aree,2021-2022,decili bassi della retribuzione (1-3),0.4068,0.3704,0.4463,2067,1248
+non iscritti a un corso,Altre aree,2021-2022,decile medio della retribuzione (in decimi),0.4617,0.4383,0.4846,2067,1248
+non iscritti a un corso,Altre aree,2023-2025,occupati,0.6792,0.6589,0.7002,2726,1833
+non iscritti a un corso,Altre aree,2023-2025,dirigenti e intellettuali (1-2),0.4291,0.4022,0.4562,2726,1833
+non iscritti a un corso,Altre aree,2023-2025,tecniche (3),0.3137,0.2873,0.3416,2726,1833
+non iscritti a un corso,Altre aree,2023-2025,"ufficio, commercio e servizi (4-5)",0.1998,0.1762,0.2238,2726,1833
+non iscritti a un corso,Altre aree,2023-2025,manuali (6-8),0.0445,0.0346,0.0557,2726,1833
+non iscritti a un corso,Altre aree,2023-2025,decili bassi della retribuzione (1-3),0.3839,0.3355,0.4375,2726,1833
+non iscritti a un corso,Altre aree,2023-2025,decile medio della retribuzione (in decimi),0.4815,0.4536,0.5123,2726,1833
+non iscritti a un corso,Altre aree,2021,occupati,0.5803,,,1040,559
+non iscritti a un corso,Altre aree,2021,dirigenti e intellettuali (1-2),0.5283,,,1040,559
+non iscritti a un corso,Altre aree,2021,tecniche (3),0.28,,,1040,559
+non iscritti a un corso,Altre aree,2021,"ufficio, commercio e servizi (4-5)",0.1504,,,1040,559
+non iscritti a un corso,Altre aree,2021,manuali (6-8),0.0331,,,1040,559
+non iscritti a un corso,Altre aree,2021,decili bassi della retribuzione (1-3),0.4253,,,1040,559
+non iscritti a un corso,Altre aree,2021,decile medio della retribuzione (in decimi),0.4316,,,1040,559
+non iscritti a un corso,Altre aree,2022,occupati,0.6902,,,1027,689
+non iscritti a un corso,Altre aree,2022,dirigenti e intellettuali (1-2),0.4868,,,1027,689
+non iscritti a un corso,Altre aree,2022,tecniche (3),0.2755,,,1027,689
+non iscritti a un corso,Altre aree,2022,"ufficio, commercio e servizi (4-5)",0.1722,,,1027,689
+non iscritti a un corso,Altre aree,2022,manuali (6-8),0.0386,,,1027,689
+non iscritti a un corso,Altre aree,2022,decili bassi della retribuzione (1-3),0.395,,,1027,689
+non iscritti a un corso,Altre aree,2022,decile medio della retribuzione (in decimi),0.481,,,1027,689
+non iscritti a un corso,Altre aree,2023,occupati,0.7094,,,987,686
+non iscritti a un corso,Altre aree,2023,dirigenti e intellettuali (1-2),0.4194,,,987,686
+non iscritti a un corso,Altre aree,2023,tecniche (3),0.3212,,,987,686
+non iscritti a un corso,Altre aree,2023,"ufficio, commercio e servizi (4-5)",0.2059,,,987,686
+non iscritti a un corso,Altre aree,2023,manuali (6-8),0.0327,,,987,686
+non iscritti a un corso,Altre aree,2023,decili bassi della retribuzione (1-3),0.3839,,,987,686
+non iscritti a un corso,Altre aree,2023,decile medio della retribuzione (in decimi),0.4815,,,987,686
+non iscritti a un corso,Altre aree,2024,occupati,0.6605,,,921,597
+non iscritti a un corso,Altre aree,2024,dirigenti e intellettuali (1-2),0.4627,,,921,597
+non iscritti a un corso,Altre aree,2024,tecniche (3),0.2818,,,921,597
+non iscritti a un corso,Altre aree,2024,"ufficio, commercio e servizi (4-5)",0.2034,,,921,597
+non iscritti a un corso,Altre aree,2024,manuali (6-8),0.0401,,,921,597
+non iscritti a un corso,Altre aree,2024,decili bassi della retribuzione (1-3),nan,,,921,597
+non iscritti a un corso,Altre aree,2024,decile medio della retribuzione (in decimi),nan,,,921,597
+non iscritti a un corso,Altre aree,2025,occupati,0.6652,,,818,550
+non iscritti a un corso,Altre aree,2025,dirigenti e intellettuali (1-2),0.4022,,,818,550
+non iscritti a un corso,Altre aree,2025,tecniche (3),0.341,,,818,550
+non iscritti a un corso,Altre aree,2025,"ufficio, commercio e servizi (4-5)",0.188,,,818,550
+non iscritti a un corso,Altre aree,2025,manuali (6-8),0.0645,,,818,550
+non iscritti a un corso,Altre aree,2025,decili bassi della retribuzione (1-3),nan,,,818,550
+non iscritti a un corso,Altre aree,2025,decile medio della retribuzione (in decimi),nan,,,818,550
+tutti,ICT e ingegneria dell'informazione,2021-2022,occupati,0.4606,0.43,0.4899,1803,764
+tutti,ICT e ingegneria dell'informazione,2021-2022,dirigenti e intellettuali (1-2),0.599,0.5538,0.643,1803,764
+tutti,ICT e ingegneria dell'informazione,2021-2022,tecniche (3),0.2564,0.2178,0.3002,1803,764
+tutti,ICT e ingegneria dell'informazione,2021-2022,"ufficio, commercio e servizi (4-5)",0.1053,0.0787,0.1323,1803,764
+tutti,ICT e ingegneria dell'informazione,2021-2022,manuali (6-8),0.0378,0.0229,0.0529,1803,764
+tutti,ICT e ingegneria dell'informazione,2021-2022,decili bassi della retribuzione (1-3),0.2243,0.1853,0.2682,1803,764
+tutti,ICT e ingegneria dell'informazione,2021-2022,decile medio della retribuzione (in decimi),0.5594,0.5343,0.5868,1803,764
+tutti,ICT e ingegneria dell'informazione,2023-2025,occupati,0.4978,0.4734,0.5223,2321,1100
+tutti,ICT e ingegneria dell'informazione,2023-2025,dirigenti e intellettuali (1-2),0.6095,0.5757,0.6447,2321,1100
+tutti,ICT e ingegneria dell'informazione,2023-2025,tecniche (3),0.2636,0.2307,0.2965,2321,1100
+tutti,ICT e ingegneria dell'informazione,2023-2025,"ufficio, commercio e servizi (4-5)",0.0825,0.0617,0.103,2321,1100
+tutti,ICT e ingegneria dell'informazione,2023-2025,manuali (6-8),0.0427,0.028,0.0577,2321,1100
+tutti,ICT e ingegneria dell'informazione,2023-2025,decili bassi della retribuzione (1-3),0.163,0.1226,0.2071,2321,1100
+tutti,ICT e ingegneria dell'informazione,2023-2025,decile medio della retribuzione (in decimi),0.5905,0.5638,0.6152,2321,1100
+tutti,ICT e ingegneria dell'informazione,2021,occupati,0.4554,,,877,363
+tutti,ICT e ingegneria dell'informazione,2021,dirigenti e intellettuali (1-2),0.6231,,,877,363
+tutti,ICT e ingegneria dell'informazione,2021,tecniche (3),0.2649,,,877,363
+tutti,ICT e ingegneria dell'informazione,2021,"ufficio, commercio e servizi (4-5)",0.074,,,877,363
+tutti,ICT e ingegneria dell'informazione,2021,manuali (6-8),0.0346,,,877,363
+tutti,ICT e ingegneria dell'informazione,2021,decili bassi della retribuzione (1-3),0.2508,,,877,363
+tutti,ICT e ingegneria dell'informazione,2021,decile medio della retribuzione (in decimi),0.5398,,,877,363
+tutti,ICT e ingegneria dell'informazione,2022,occupati,0.4647,,,926,401
+tutti,ICT e ingegneria dell'informazione,2022,dirigenti e intellettuali (1-2),0.58,,,926,401
+tutti,ICT e ingegneria dell'informazione,2022,tecniche (3),0.2498,,,926,401
+tutti,ICT e ingegneria dell'informazione,2022,"ufficio, commercio e servizi (4-5)",0.1299,,,926,401
+tutti,ICT e ingegneria dell'informazione,2022,manuali (6-8),0.0403,,,926,401
+tutti,ICT e ingegneria dell'informazione,2022,decili bassi della retribuzione (1-3),0.2037,,,926,401
+tutti,ICT e ingegneria dell'informazione,2022,decile medio della retribuzione (in decimi),0.5747,,,926,401
+tutti,ICT e ingegneria dell'informazione,2023,occupati,0.5193,,,898,438
+tutti,ICT e ingegneria dell'informazione,2023,dirigenti e intellettuali (1-2),0.6472,,,898,438
+tutti,ICT e ingegneria dell'informazione,2023,tecniche (3),0.2485,,,898,438
+tutti,ICT e ingegneria dell'informazione,2023,"ufficio, commercio e servizi (4-5)",0.0594,,,898,438
+tutti,ICT e ingegneria dell'informazione,2023,manuali (6-8),0.0449,,,898,438
+tutti,ICT e ingegneria dell'informazione,2023,decili bassi della retribuzione (1-3),0.163,,,898,438
+tutti,ICT e ingegneria dell'informazione,2023,decile medio della retribuzione (in decimi),0.5905,,,898,438
+tutti,ICT e ingegneria dell'informazione,2024,occupati,0.4818,,,726,338
+tutti,ICT e ingegneria dell'informazione,2024,dirigenti e intellettuali (1-2),0.5849,,,726,338
+tutti,ICT e ingegneria dell'informazione,2024,tecniche (3),0.2936,,,726,338
+tutti,ICT e ingegneria dell'informazione,2024,"ufficio, commercio e servizi (4-5)",0.071,,,726,338
+tutti,ICT e ingegneria dell'informazione,2024,manuali (6-8),0.0454,,,726,338
+tutti,ICT e ingegneria dell'informazione,2024,decili bassi della retribuzione (1-3),nan,,,726,338
+tutti,ICT e ingegneria dell'informazione,2024,decile medio della retribuzione (in decimi),nan,,,726,338
+tutti,ICT e ingegneria dell'informazione,2025,occupati,0.4898,,,697,324
+tutti,ICT e ingegneria dell'informazione,2025,dirigenti e intellettuali (1-2),0.5884,,,697,324
+tutti,ICT e ingegneria dell'informazione,2025,tecniche (3),0.2497,,,697,324
+tutti,ICT e ingegneria dell'informazione,2025,"ufficio, commercio e servizi (4-5)",0.1248,,,697,324
+tutti,ICT e ingegneria dell'informazione,2025,manuali (6-8),0.037,,,697,324
+tutti,ICT e ingegneria dell'informazione,2025,decili bassi della retribuzione (1-3),nan,,,697,324
+tutti,ICT e ingegneria dell'informazione,2025,decile medio della retribuzione (in decimi),nan,,,697,324
+tutti,"Economia, diritto, scienze sociali, lettere",2021-2022,occupati,0.4361,0.4217,0.4525,6342,2631
+tutti,"Economia, diritto, scienze sociali, lettere",2021-2022,dirigenti e intellettuali (1-2),0.3042,0.2833,0.3288,6342,2631
+tutti,"Economia, diritto, scienze sociali, lettere",2021-2022,tecniche (3),0.3021,0.2784,0.3249,6342,2631
+tutti,"Economia, diritto, scienze sociali, lettere",2021-2022,"ufficio, commercio e servizi (4-5)",0.3495,0.3252,0.3733,6342,2631
+tutti,"Economia, diritto, scienze sociali, lettere",2021-2022,manuali (6-8),0.0282,0.0208,0.036,6342,2631
+tutti,"Economia, diritto, scienze sociali, lettere",2021-2022,decili bassi della retribuzione (1-3),0.4116,0.3857,0.4364,6342,2631
+tutti,"Economia, diritto, scienze sociali, lettere",2021-2022,decile medio della retribuzione (in decimi),0.467,0.452,0.4819,6342,2631
+tutti,"Economia, diritto, scienze sociali, lettere",2023-2025,occupati,0.4962,0.4833,0.5087,7963,3857
+tutti,"Economia, diritto, scienze sociali, lettere",2023-2025,dirigenti e intellettuali (1-2),0.3407,0.3212,0.3604,7963,3857
+tutti,"Economia, diritto, scienze sociali, lettere",2023-2025,tecniche (3),0.2597,0.2423,0.2777,7963,3857
+tutti,"Economia, diritto, scienze sociali, lettere",2023-2025,"ufficio, commercio e servizi (4-5)",0.3584,0.3396,0.3781,7963,3857
+tutti,"Economia, diritto, scienze sociali, lettere",2023-2025,manuali (6-8),0.0265,0.0215,0.0323,7963,3857
+tutti,"Economia, diritto, scienze sociali, lettere",2023-2025,decili bassi della retribuzione (1-3),0.3482,0.3194,0.3794,7963,3857
+tutti,"Economia, diritto, scienze sociali, lettere",2023-2025,decile medio della retribuzione (in decimi),0.5091,0.4906,0.5279,7963,3857
+tutti,"Economia, diritto, scienze sociali, lettere",2021,occupati,0.4184,,,3291,1292
+tutti,"Economia, diritto, scienze sociali, lettere",2021,dirigenti e intellettuali (1-2),0.3074,,,3291,1292
+tutti,"Economia, diritto, scienze sociali, lettere",2021,tecniche (3),0.2988,,,3291,1292
+tutti,"Economia, diritto, scienze sociali, lettere",2021,"ufficio, commercio e servizi (4-5)",0.3542,,,3291,1292
+tutti,"Economia, diritto, scienze sociali, lettere",2021,manuali (6-8),0.0255,,,3291,1292
+tutti,"Economia, diritto, scienze sociali, lettere",2021,decili bassi della retribuzione (1-3),0.4276,,,3291,1292
+tutti,"Economia, diritto, scienze sociali, lettere",2021,decile medio della retribuzione (in decimi),0.471,,,3291,1292
+tutti,"Economia, diritto, scienze sociali, lettere",2022,occupati,0.4512,,,3051,1339
+tutti,"Economia, diritto, scienze sociali, lettere",2022,dirigenti e intellettuali (1-2),0.3017,,,3051,1339
+tutti,"Economia, diritto, scienze sociali, lettere",2022,tecniche (3),0.3048,,,3051,1339
+tutti,"Economia, diritto, scienze sociali, lettere",2022,"ufficio, commercio e servizi (4-5)",0.3457,,,3051,1339
+tutti,"Economia, diritto, scienze sociali, lettere",2022,manuali (6-8),0.0304,,,3051,1339
+tutti,"Economia, diritto, scienze sociali, lettere",2022,decili bassi della retribuzione (1-3),0.3993,,,3051,1339
+tutti,"Economia, diritto, scienze sociali, lettere",2022,decile medio della retribuzione (in decimi),0.464,,,3051,1339
+tutti,"Economia, diritto, scienze sociali, lettere",2023,occupati,0.4851,,,2996,1445
+tutti,"Economia, diritto, scienze sociali, lettere",2023,dirigenti e intellettuali (1-2),0.3239,,,2996,1445
+tutti,"Economia, diritto, scienze sociali, lettere",2023,tecniche (3),0.2553,,,2996,1445
+tutti,"Economia, diritto, scienze sociali, lettere",2023,"ufficio, commercio e servizi (4-5)",0.3768,,,2996,1445
+tutti,"Economia, diritto, scienze sociali, lettere",2023,manuali (6-8),0.0247,,,2996,1445
+tutti,"Economia, diritto, scienze sociali, lettere",2023,decili bassi della retribuzione (1-3),0.3482,,,2996,1445
+tutti,"Economia, diritto, scienze sociali, lettere",2023,decile medio della retribuzione (in decimi),0.5091,,,2996,1445
+tutti,"Economia, diritto, scienze sociali, lettere",2024,occupati,0.5318,,,2571,1323
+tutti,"Economia, diritto, scienze sociali, lettere",2024,dirigenti e intellettuali (1-2),0.3356,,,2571,1323
+tutti,"Economia, diritto, scienze sociali, lettere",2024,tecniche (3),0.2561,,,2571,1323
+tutti,"Economia, diritto, scienze sociali, lettere",2024,"ufficio, commercio e servizi (4-5)",0.3647,,,2571,1323
+tutti,"Economia, diritto, scienze sociali, lettere",2024,manuali (6-8),0.0285,,,2571,1323
+tutti,"Economia, diritto, scienze sociali, lettere",2024,decili bassi della retribuzione (1-3),nan,,,2571,1323
+tutti,"Economia, diritto, scienze sociali, lettere",2024,decile medio della retribuzione (in decimi),nan,,,2571,1323
+tutti,"Economia, diritto, scienze sociali, lettere",2025,occupati,0.4691,,,2396,1089
+tutti,"Economia, diritto, scienze sociali, lettere",2025,dirigenti e intellettuali (1-2),0.3667,,,2396,1089
+tutti,"Economia, diritto, scienze sociali, lettere",2025,tecniche (3),0.2694,,,2396,1089
+tutti,"Economia, diritto, scienze sociali, lettere",2025,"ufficio, commercio e servizi (4-5)",0.3287,,,2396,1089
+tutti,"Economia, diritto, scienze sociali, lettere",2025,manuali (6-8),0.0262,,,2396,1089
+tutti,"Economia, diritto, scienze sociali, lettere",2025,decili bassi della retribuzione (1-3),nan,,,2396,1089
+tutti,"Economia, diritto, scienze sociali, lettere",2025,decile medio della retribuzione (in decimi),nan,,,2396,1089
+tutti,Sanità e insegnamento,2021-2022,occupati,0.6805,0.6562,0.7042,2422,1654
+tutti,Sanità e insegnamento,2021-2022,dirigenti e intellettuali (1-2),0.4405,0.4109,0.4707,2422,1654
+tutti,Sanità e insegnamento,2021-2022,tecniche (3),0.476,0.4444,0.5082,2422,1654
+tutti,Sanità e insegnamento,2021-2022,"ufficio, commercio e servizi (4-5)",0.0696,0.055,0.0853,2422,1654
+tutti,Sanità e insegnamento,2021-2022,manuali (6-8),0.013,0.0071,0.0198,2422,1654
+tutti,Sanità e insegnamento,2021-2022,decili bassi della retribuzione (1-3),0.3208,0.2892,0.3517,2422,1654
+tutti,Sanità e insegnamento,2021-2022,decile medio della retribuzione (in decimi),0.5212,0.5038,0.5385,2422,1654
+tutti,Sanità e insegnamento,2023-2025,occupati,0.6935,0.6722,0.7132,3119,2214
+tutti,Sanità e insegnamento,2023-2025,dirigenti e intellettuali (1-2),0.451,0.4261,0.4781,3119,2214
+tutti,Sanità e insegnamento,2023-2025,tecniche (3),0.4546,0.4265,0.4809,3119,2214
+tutti,Sanità e insegnamento,2023-2025,"ufficio, commercio e servizi (4-5)",0.0836,0.0695,0.0985,3119,2214
+tutti,Sanità e insegnamento,2023-2025,manuali (6-8),0.0095,0.0042,0.0164,3119,2214
+tutti,Sanità e insegnamento,2023-2025,decili bassi della retribuzione (1-3),0.2808,0.2395,0.323,3119,2214
+tutti,Sanità e insegnamento,2023-2025,decile medio della retribuzione (in decimi),0.5425,0.5187,0.5653,3119,2214
+tutti,Sanità e insegnamento,2021,occupati,0.6965,,,1248,861
+tutti,Sanità e insegnamento,2021,dirigenti e intellettuali (1-2),0.4197,,,1248,861
+tutti,Sanità e insegnamento,2021,tecniche (3),0.4932,,,1248,861
+tutti,Sanità e insegnamento,2021,"ufficio, commercio e servizi (4-5)",0.0771,,,1248,861
+tutti,Sanità e insegnamento,2021,manuali (6-8),0.01,,,1248,861
+tutti,Sanità e insegnamento,2021,decili bassi della retribuzione (1-3),0.3322,,,1248,861
+tutti,Sanità e insegnamento,2021,decile medio della retribuzione (in decimi),0.5091,,,1248,861
+tutti,Sanità e insegnamento,2022,occupati,0.6679,,,1174,793
+tutti,Sanità e insegnamento,2022,dirigenti e intellettuali (1-2),0.4576,,,1174,793
+tutti,Sanità e insegnamento,2022,tecniche (3),0.4618,,,1174,793
+tutti,Sanità e insegnamento,2022,"ufficio, commercio e servizi (4-5)",0.0636,,,1174,793
+tutti,Sanità e insegnamento,2022,manuali (6-8),0.0155,,,1174,793
+tutti,Sanità e insegnamento,2022,decili bassi della retribuzione (1-3),0.3123,,,1174,793
+tutti,Sanità e insegnamento,2022,decile medio della retribuzione (in decimi),0.5303,,,1174,793
+tutti,Sanità e insegnamento,2023,occupati,0.7083,,,1156,820
+tutti,Sanità e insegnamento,2023,dirigenti e intellettuali (1-2),0.4128,,,1156,820
+tutti,Sanità e insegnamento,2023,tecniche (3),0.4895,,,1156,820
+tutti,Sanità e insegnamento,2023,"ufficio, commercio e servizi (4-5)",0.0896,,,1156,820
+tutti,Sanità e insegnamento,2023,manuali (6-8),0.0044,,,1156,820
+tutti,Sanità e insegnamento,2023,decili bassi della retribuzione (1-3),0.2808,,,1156,820
+tutti,Sanità e insegnamento,2023,decile medio della retribuzione (in decimi),0.5425,,,1156,820
+tutti,Sanità e insegnamento,2024,occupati,0.6538,,,1003,689
+tutti,Sanità e insegnamento,2024,dirigenti e intellettuali (1-2),0.4677,,,1003,689
+tutti,Sanità e insegnamento,2024,tecniche (3),0.442,,,1003,689
+tutti,Sanità e insegnamento,2024,"ufficio, commercio e servizi (4-5)",0.0808,,,1003,689
+tutti,Sanità e insegnamento,2024,manuali (6-8),0.0095,,,1003,689
+tutti,Sanità e insegnamento,2024,decili bassi della retribuzione (1-3),nan,,,1003,689
+tutti,Sanità e insegnamento,2024,decile medio della retribuzione (in decimi),nan,,,1003,689
+tutti,Sanità e insegnamento,2025,occupati,0.7195,,,960,705
+tutti,Sanità e insegnamento,2025,dirigenti e intellettuali (1-2),0.4756,,,960,705
+tutti,Sanità e insegnamento,2025,tecniche (3),0.4298,,,960,705
+tutti,Sanità e insegnamento,2025,"ufficio, commercio e servizi (4-5)",0.0799,,,960,705
+tutti,Sanità e insegnamento,2025,manuali (6-8),0.0148,,,960,705
+tutti,Sanità e insegnamento,2025,decili bassi della retribuzione (1-3),nan,,,960,705
+tutti,Sanità e insegnamento,2025,decile medio della retribuzione (in decimi),nan,,,960,705
+tutti,Altre aree,2021-2022,occupati,0.4404,0.4201,0.4609,3799,1531
+tutti,Altre aree,2021-2022,dirigenti e intellettuali (1-2),0.4822,0.451,0.5116,3799,1531
+tutti,Altre aree,2021-2022,tecniche (3),0.2689,0.243,0.2981,3799,1531
+tutti,Altre aree,2021-2022,"ufficio, commercio e servizi (4-5)",0.1908,0.1658,0.2149,3799,1531
+tutti,Altre aree,2021-2022,manuali (6-8),0.0409,0.0293,0.0541,3799,1531
+tutti,Altre aree,2021-2022,decili bassi della retribuzione (1-3),0.4622,0.4229,0.4969,3799,1531
+tutti,Altre aree,2021-2022,decile medio della retribuzione (in decimi),0.4308,0.4106,0.4531,3799,1531
+tutti,Altre aree,2023-2025,occupati,0.4382,0.4222,0.4574,5071,2188
+tutti,Altre aree,2023-2025,dirigenti e intellettuali (1-2),0.4084,0.3841,0.4337,5071,2188
+tutti,Altre aree,2023-2025,tecniche (3),0.3077,0.2828,0.3331,5071,2188
+tutti,Altre aree,2023-2025,"ufficio, commercio e servizi (4-5)",0.2209,0.1985,0.2433,5071,2188
+tutti,Altre aree,2023-2025,manuali (6-8),0.0483,0.0389,0.0596,5071,2188
+tutti,Altre aree,2023-2025,decili bassi della retribuzione (1-3),0.4284,0.3835,0.4787,5071,2188
+tutti,Altre aree,2023-2025,decile medio della retribuzione (in decimi),0.4563,0.4297,0.4838,5071,2188
+tutti,Altre aree,2021,occupati,0.4009,,,1903,681
+tutti,Altre aree,2021,dirigenti e intellettuali (1-2),0.4964,,,1903,681
+tutti,Altre aree,2021,tecniche (3),0.2647,,,1903,681
+tutti,Altre aree,2021,"ufficio, commercio e servizi (4-5)",0.1903,,,1903,681
+tutti,Altre aree,2021,manuali (6-8),0.0386,,,1903,681
+tutti,Altre aree,2021,decili bassi della retribuzione (1-3),0.4731,,,1903,681
+tutti,Altre aree,2021,decile medio della retribuzione (in decimi),0.4051,,,1903,681
+tutti,Altre aree,2022,occupati,0.4695,,,1896,850
+tutti,Altre aree,2022,dirigenti e intellettuali (1-2),0.4732,,,1896,850
+tutti,Altre aree,2022,tecniche (3),0.2715,,,1896,850
+tutti,Altre aree,2022,"ufficio, commercio e servizi (4-5)",0.1911,,,1896,850
+tutti,Altre aree,2022,manuali (6-8),0.0423,,,1896,850
+tutti,Altre aree,2022,decili bassi della retribuzione (1-3),0.4553,,,1896,850
+tutti,Altre aree,2022,decile medio della retribuzione (in decimi),0.4472,,,1896,850
+tutti,Altre aree,2023,occupati,0.4667,,,1918,851
+tutti,Altre aree,2023,dirigenti e intellettuali (1-2),0.3922,,,1918,851
+tutti,Altre aree,2023,tecniche (3),0.3232,,,1918,851
+tutti,Altre aree,2023,"ufficio, commercio e servizi (4-5)",0.2183,,,1918,851
+tutti,Altre aree,2023,manuali (6-8),0.0425,,,1918,851
+tutti,Altre aree,2023,decili bassi della retribuzione (1-3),0.4284,,,1918,851
+tutti,Altre aree,2023,decile medio della retribuzione (in decimi),0.4563,,,1918,851
+tutti,Altre aree,2024,occupati,0.4349,,,1688,711
+tutti,Altre aree,2024,dirigenti e intellettuali (1-2),0.4338,,,1688,711
+tutti,Altre aree,2024,tecniche (3),0.2757,,,1688,711
+tutti,Altre aree,2024,"ufficio, commercio e servizi (4-5)",0.2347,,,1688,711
+tutti,Altre aree,2024,manuali (6-8),0.0432,,,1688,711
+tutti,Altre aree,2024,decili bassi della retribuzione (1-3),nan,,,1688,711
+tutti,Altre aree,2024,decile medio della retribuzione (in decimi),nan,,,1688,711
+tutti,Altre aree,2025,occupati,0.407,,,1465,626
+tutti,Altre aree,2025,dirigenti e intellettuali (1-2),0.4,,,1465,626
+tutti,Altre aree,2025,tecniche (3),0.3259,,,1465,626
+tutti,Altre aree,2025,"ufficio, commercio e servizi (4-5)",0.2074,,,1465,626
+tutti,Altre aree,2025,manuali (6-8),0.063,,,1465,626
+tutti,Altre aree,2025,decili bassi della retribuzione (1-3),nan,,,1465,626
+tutti,Altre aree,2025,decile medio della retribuzione (in decimi),nan,,,1465,626
