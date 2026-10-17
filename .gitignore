@@ -1,0 +1,20 @@
+# Dati scaricati dalle fonti: non si ridistribuiscono, si riscaricano
+dati/
+*.zip
+
+# Dati generati da piccolo-gpt/prepara_dati.py (i pesi pubblicati
+# piccolo-gpt/pesi.bin invece restano nel repository)
+train.bin
+val.bin
+meta.pkl
+commedia.txt
+commedia_raw.txt
+
+# Python
+__pycache__/
+*.pyc
+venv/
+.venv/
+
+# macOS
+.DS_Store
