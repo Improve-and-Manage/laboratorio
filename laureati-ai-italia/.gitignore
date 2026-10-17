@@ -1,0 +1,4 @@
+# I microdati Istat non si ridistribuiscono: si scaricano con scarica_dati.py
+dati/
+__pycache__/
+.DS_Store

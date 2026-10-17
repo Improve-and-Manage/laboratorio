@@ -1,0 +1,22 @@
+gruppo,confronto,misura,differenza_delle_differenze,ic_basso,ic_alto
+ICT e ingegneria dell'informazione,Sanità e insegnamento,occupati,0.0198,-0.0331,0.072
+ICT e ingegneria dell'informazione,Sanità e insegnamento,dirigenti e intellettuali (1-2),-0.0297,-0.1033,0.0421
+ICT e ingegneria dell'informazione,Sanità e insegnamento,tecniche (3),0.029,-0.0426,0.0993
+ICT e ingegneria dell'informazione,Sanità e insegnamento,"ufficio, commercio e servizi (4-5)",-0.0158,-0.0557,0.0273
+ICT e ingegneria dell'informazione,Sanità e insegnamento,manuali (6-8),0.0178,-0.0033,0.0359
+ICT e ingegneria dell'informazione,Sanità e insegnamento,decili bassi della retribuzione (1-3),-0.0261,-0.1049,0.0545
+ICT e ingegneria dell'informazione,Sanità e insegnamento,decile medio della retribuzione (in decimi),-0.0008,-0.0513,0.0498
+"Economia, diritto, scienze sociali, lettere",Sanità e insegnamento,occupati,0.0444,0.0017,0.0865
+"Economia, diritto, scienze sociali, lettere",Sanità e insegnamento,dirigenti e intellettuali (1-2),0.0254,-0.024,0.0793
+"Economia, diritto, scienze sociali, lettere",Sanità e insegnamento,tecniche (3),-0.0266,-0.0803,0.0268
+"Economia, diritto, scienze sociali, lettere",Sanità e insegnamento,"ufficio, commercio e servizi (4-5)",0.0019,-0.0363,0.0402
+"Economia, diritto, scienze sociali, lettere",Sanità e insegnamento,manuali (6-8),0.0017,-0.0131,0.0155
+"Economia, diritto, scienze sociali, lettere",Sanità e insegnamento,decili bassi della retribuzione (1-3),-0.0223,-0.0946,0.0503
+"Economia, diritto, scienze sociali, lettere",Sanità e insegnamento,decile medio della retribuzione (in decimi),0.0155,-0.0249,0.0564
+Altre aree,Sanità e insegnamento,occupati,-0.0028,-0.0472,0.045
+Altre aree,Sanità e insegnamento,dirigenti e intellettuali (1-2),-0.083,-0.147,-0.0211
+Altre aree,Sanità e insegnamento,tecniche (3),0.0587,-0.0047,0.1233
+Altre aree,Sanità e insegnamento,"ufficio, commercio e servizi (4-5)",0.0168,-0.0262,0.058
+Altre aree,Sanità e insegnamento,manuali (6-8),0.0146,-0.0041,0.034
+Altre aree,Sanità e insegnamento,decili bassi della retribuzione (1-3),0.0025,-0.0852,0.0944
+Altre aree,Sanità e insegnamento,decile medio della retribuzione (in decimi),0.0036,-0.0462,0.053
