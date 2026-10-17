@@ -1,0 +1,876 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Il piccolo GPT che ha letto Dante</title>
+<!-- Pagina autonoma del piccolo GPT, ricavata da src/pages/applicazioni/piccolo-gpt.astro del
+     sito Improve and Manage. Il markup del widget, i suoi stili e lo script dell'inferenza sono
+     copiati senza modifiche; cambiano solo l'indirizzo dei pesi (../manifest.json e ../pesi.bin)
+     e le variabili del tema qui sotto, che nel sito vengono dal foglio di stile comune.
+     Va aperta attraverso un server locale, per esempio dalla cartella piccolo-gpt/:
+         python3 -m http.server
+     e poi http://localhost:8000/pagina/ -->
+<style>
+  /* Le variabili del tema del sito usate dal widget, con i valori del tema chiaro e scuro. */
+  :root {
+    --color-surface: #fbfaf7;
+    --color-surface-raised: #f4f2ec;
+    --color-text: #16161a;
+    --color-text-muted: #6b6b76;
+    --color-border: #918a78;
+    --color-border-strong: #6b6b76;
+    --color-accent: #a6431e;
+    --color-accent-soft: #f2c3ac;
+    --color-accent-secondary: #1c6b66;
+    --font-text: "Instrument Sans", system-ui, -apple-system, sans-serif;
+    --font-mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
+    --text-size-meta: clamp(0.76rem, 0.74rem + 0.10vw, 0.87rem);
+    --text-size-small: clamp(0.88rem, 0.85rem + 0.14vw, 1.01rem);
+    --text-leading-snug: 1.3;
+    --tracking-wide: 0.08em;
+    --space-1: 0.5rem;
+    --space-2: 1rem;
+    --space-3: 1.5rem;
+    --space-4: 2rem;
+    --space-block: 2rem;
+    --radius-small: 3px;
+    --hairline: 1px;
+    --opacity-media: 0.6;
+    --measure-grafo: 80rem;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --color-surface: #16161a;
+      --color-surface-raised: #24242a;
+      --color-text: #e8e6e1;
+      --color-text-muted: #a3a3ad;
+      --color-border: #757581;
+      --color-border-strong: #a3a3ad;
+      --color-accent: #e0713f;
+      --color-accent-soft: #8a3717;
+      --color-accent-secondary: #5fb0a8;
+      color-scheme: dark;
+    }
+  }
+  body {
+    margin: 0;
+    background: var(--color-surface);
+    color: var(--color-text);
+    font-family: var(--font-text);
+    line-height: 1.5;
+  }
+  main { max-width: var(--measure-grafo); margin: 0 auto; padding: var(--space-3) var(--space-2); }
+  main > h1 { font-family: var(--font-mono); font-size: 1.4rem; margin: 0 0 var(--space-1); }
+  main > p { max-width: 46rem; margin: 0 0 var(--space-2); }
+  a { color: var(--color-accent); }
+</style>
+<style>
+  .pgpt {
+    border: var(--hairline) solid var(--color-border);
+    border-radius: var(--radius-small);
+    background: var(--color-surface-raised);
+    padding: var(--space-block);
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-block);
+    /* La macchina e' un blocco pieno: senza margine il paragrafo successivo
+       le si incolla al bordo. */
+    margin-block: var(--space-3);
+  }
+  /* A schermo largo la macchina esce dalla colonna dell'articolo, come il
+     grafo dei concetti: campata piena, centrata, col tetto del grafo. */
+  .ds-article > .pgpt {
+    grid-column: full;
+    width: 100%;
+    max-width: var(--measure-grafo);
+    justify-self: center;
+  }
+  @media (min-width: 62em) {
+    .pgpt { grid-template-columns: 3fr 2fr; }
+    /* La colonna del testo riempie l'altezza della macchina: il riquadro
+       si allunga fino in fondo e la riga dell'attenzione resta ancorata. */
+    .pgpt-colonna-testo { display: flex; flex-direction: column; }
+    /* Riempie l'altezza della macchina ma non oltre un tetto: da lì in poi
+       scorre dentro, con l'autoscorrimento che segue il cursore. */
+    .pgpt-colonna-testo .pgpt-testo { flex: 1 1 auto; max-height: 30em; }
+  }
+  .pgpt-eti {
+    font-family: var(--font-mono);
+    font-size: var(--text-size-meta);
+    letter-spacing: var(--tracking-wide);
+    color: var(--color-text-muted);
+    text-transform: uppercase;
+    margin: 0 0 var(--space-1);
+    display: flex; align-items: center; gap: var(--space-2); flex-wrap: wrap;
+  }
+  .pgpt-testo {
+    font-family: var(--font-text);
+    font-size: var(--text-size-small);
+    line-height: var(--text-leading-snug);
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+    min-height: 12em;
+    max-height: 22em;
+    overflow-y: auto;
+    border: var(--hairline) solid var(--color-border);
+    border-radius: var(--radius-small);
+    padding: var(--space-2);
+    background: var(--color-surface);
+  }
+  .pgpt-testo .ctx { border-bottom: var(--hairline) solid var(--color-border-strong); }
+  .pgpt-testo .cur {
+    background: var(--color-accent-soft);
+    border-radius: var(--radius-small);
+  }
+  .pgpt-barre { display: grid; gap: var(--space-1); min-height: 15em; align-content: start; }
+  .pgpt-riga {
+    display: grid;
+    grid-template-columns: 2.2em 1fr 3.4em;
+    align-items: center;
+    gap: var(--space-2);
+    font-family: var(--font-mono);
+    font-size: var(--text-size-meta);
+  }
+  .pgpt-riga .glifo { text-align: center; color: var(--color-text); }
+  .pgpt-riga .pct { text-align: right; color: var(--color-text-muted); }
+  .pgpt-riga .asta {
+    height: 0.85em;
+    background: color-mix(in oklab, var(--color-border) 40%, transparent);
+    border-radius: var(--radius-small);
+    overflow: hidden;
+  }
+  .pgpt-riga .asta > i {
+    display: block; height: 100%;
+    background: var(--color-accent-secondary);
+  }
+  .pgpt-riga.scelta .asta > i { background: var(--color-accent); }
+  .pgpt-riga.scelta .glifo { color: var(--color-accent); }
+  .pgpt-controlli { display: grid; gap: var(--space-2); margin-top: var(--space-3); }
+  .pgpt-controlli select, .pgpt-controlli input[type="text"], .pgpt-controlli input[type="range"] {
+    width: 100%;
+    accent-color: var(--color-accent);
+    font-family: var(--font-text);
+    font-size: var(--text-size-small);
+    color: var(--color-text);
+    background: var(--color-surface);
+    border: var(--hairline) solid var(--color-border);
+    border-radius: var(--radius-small);
+    padding: var(--space-1) var(--space-2);
+  }
+  .pgpt-controlli input[type="range"] { padding: 0; border: 0; background: transparent; }
+  .pgpt-temp-scala {
+    display: flex; justify-content: space-between;
+    font-family: var(--font-mono);
+    font-size: var(--text-size-meta);
+    color: var(--color-text-muted);
+    margin-top: calc(-1 * var(--space-1));
+  }
+  .pgpt-aiuto {
+    font-size: var(--text-size-meta);
+    color: var(--color-text-muted);
+    margin: 0;
+  }
+  /* A schermo stretto azione ed effetto devono stare vicini: i comandi
+     salgono subito sotto il testo, la classifica segue. */
+  @media (max-width: 62em) {
+    .pgpt-colonna-pannello { display: contents; }
+    .pgpt-controlli { order: 1; margin-top: 0; }
+    .pgpt-colonna-pannello > .pgpt-eti { order: 2; }
+    .pgpt-barre { order: 2; }
+    .pgpt-rx { order: 3; }
+  }
+  .pgpt-bottoni { display: flex; gap: var(--space-2); flex-wrap: wrap; }
+  .pgpt-bottoni button, .pgpt-mini {
+    font-family: var(--font-mono);
+    font-size: var(--text-size-meta);
+    letter-spacing: var(--tracking-wide);
+    text-transform: uppercase;
+    color: var(--color-text);
+    background: var(--color-surface);
+    border: var(--hairline) solid var(--color-border-strong);
+    border-radius: var(--radius-small);
+    padding: var(--space-1) var(--space-2);
+    cursor: pointer;
+  }
+  .pgpt-bottoni button:disabled { opacity: var(--opacity-media); cursor: default; }
+  .pgpt-bottoni button:hover:not(:disabled), .pgpt-mini:hover { border-color: var(--color-accent); }
+  .pgpt-mini.attiva { border-color: var(--color-accent); color: var(--color-accent); }
+  .pgpt-rx {
+    grid-column: 1 / -1;
+    border-top: var(--hairline) solid var(--color-border);
+    padding-top: var(--space-2);
+  }
+  .pgpt-rx summary {
+    font-family: var(--font-mono);
+    font-size: var(--text-size-meta);
+    letter-spacing: var(--tracking-wide);
+    color: var(--color-accent);
+    cursor: pointer;
+  }
+  .pgpt-rx summary:hover { color: var(--color-text); }
+  .pgpt-conduttura {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-2);
+    margin-top: var(--space-2);
+  }
+  @media (min-width: 34em) {
+    .pgpt-conduttura {
+      grid-template-columns: 1fr 1fr;
+      column-gap: var(--space-4);
+    }
+    .pgpt-conduttura > .pgpt-st:nth-child(odd) { position: relative; }
+    .pgpt-conduttura > .pgpt-st:nth-child(odd)::after {
+      content: "\2192";
+      position: absolute;
+      top: 50%;
+      right: calc(-0.5 * var(--space-4));
+      transform: translate(50%, -50%);
+      font-family: var(--font-mono);
+      color: var(--color-text-muted);
+      pointer-events: none;
+    }
+  }
+  @media (min-width: 62em) {
+    .pgpt-conduttura { grid-template-columns: repeat(6, 1fr); column-gap: var(--space-2); }
+    .pgpt-conduttura > .pgpt-st:nth-child(odd)::after { content: none; }
+  }
+  .pgpt-st {
+    display: grid;
+    gap: var(--space-1);
+    align-content: start;
+    text-align: left;
+    padding: var(--space-2);
+    background: var(--color-surface);
+    border: var(--hairline) solid var(--color-border);
+    border-radius: var(--radius-small);
+    font: inherit;
+    color: inherit;
+  }
+  button.pgpt-st { cursor: pointer; }
+  button.pgpt-st:hover { border-color: var(--color-accent); }
+  .pgpt-st.scelto { border-color: var(--color-accent); }
+  .pgpt-st.viva { background: var(--color-accent-soft); }
+  .pgpt-st .nome {
+    font-family: var(--font-mono);
+    font-size: var(--text-size-meta);
+    letter-spacing: var(--tracking-wide);
+    color: var(--color-text-muted);
+  }
+  .pgpt-st.scelto .nome { color: var(--color-accent); }
+  .pgpt-st canvas { width: 100%; height: 12px; display: block; border-radius: var(--radius-small); }
+  .pgpt-st .lente {
+    font-family: var(--font-mono);
+    font-size: var(--text-size-meta);
+    color: var(--color-text);
+    min-height: 2.6em;
+  }
+  /* Nella figura della cache il colore segna i conti fatti nel passo:
+     tinta piena per il carattere nuovo, tinta tenue per il lavoro rifatto,
+     cosi' l'etichetta sopra resta leggibile. */
+  .pgpt-dia-lavoro { fill: var(--color-accent-soft); }
+  .pgpt-rx-nota {
+    font-size: var(--text-size-small);
+    color: var(--color-text-muted);
+    margin: var(--space-2) 0 0;
+    max-width: none;
+  }
+  .pgpt-stato {
+    font-family: var(--font-mono);
+    font-size: var(--text-size-meta);
+    color: var(--color-text-muted);
+    margin: 0;
+  }
+</style>
+</head>
+<body>
+<main>
+<h1>Il piccolo GPT che ha letto Dante</h1>
+<p>Un modello di linguaggio minuscolo, addestrato sulla Divina Commedia un carattere alla volta, che
+genera testo in questo browser. A ogni carattere si vedono le probabilità fra cui sceglie,
+l'attenzione con cui guarda il testo e l'effetto della temperatura. La spiegazione completa sta
+nella <a href="https://www.improveandmanage.com/applicazioni/piccolo-gpt/">pagina del sito</a>.</p>
+    <div class="ds-wide pgpt" id="pgpt">
+      <div class="pgpt-colonna-testo">
+        <p class="pgpt-eti">IL TESTO CHE CRESCE <span id="pgpt-finestra"></span></p>
+        <div class="pgpt-testo" id="pgpt-testo" aria-live="off"></div>
+        <p class="pgpt-eti">ATTENZIONE SUL TESTO &middot; TESTA
+          <span class="pgpt-teste" role="group" aria-label="scelta della testa di attenzione">
+            <button type="button" data-testa="-1" class="pgpt-mini attiva" aria-pressed="true">spenta</button>
+            <button type="button" data-testa="0" class="pgpt-mini" aria-pressed="false">1</button>
+            <button type="button" data-testa="1" class="pgpt-mini" aria-pressed="false">2</button>
+            <button type="button" data-testa="2" class="pgpt-mini" aria-pressed="false">3</button>
+            <button type="button" data-testa="3" class="pgpt-mini" aria-pressed="false">4</button>
+          </span>
+          <span>&middot; blocco <span id="pgpt-blocco-eti">4</span> &middot; si sceglie nella radiografia</span>
+        </p>
+      </div>
+      <div class="pgpt-colonna-pannello">
+        <p class="pgpt-eti">LE PROBABILITÀ DEL PROSSIMO CARATTERE</p>
+        <div class="pgpt-barre" id="pgpt-barre" aria-label="i dieci caratteri più probabili"></div>
+        <div class="pgpt-controlli">
+          <label class="pgpt-eti" for="pgpt-incipit">SI PARTE DA</label>
+          <select id="pgpt-incipit">
+            <option>Nel mezzo del cammin di nostra vita</option>
+            <option>Amor, ch&rsquo;a nullo amato amar perdona,</option>
+            <option>E quindi uscimmo a riveder le stelle.</option>
+            <option>O voi ch&rsquo;avete li &rsquo;ntelletti sani,</option>
+          </select>
+          <input type="text" id="pgpt-libero"
+            placeholder="&hellip;oppure scrivete voi l&rsquo;inizio" />
+          <label class="pgpt-eti" for="pgpt-temp">TEMPERATURA <span id="pgpt-temp-v">0,8</span></label>
+          <input type="range" id="pgpt-temp" min="0.1" max="1.8" step="0.1" value="0.8" />
+          <div class="pgpt-temp-scala" aria-hidden="true"><span>ripete</span><span>sragiona</span></div>
+          <div class="pgpt-bottoni">
+            <button type="button" id="pgpt-genera" disabled>Genera</button>
+            <button type="button" id="pgpt-passo" disabled>Un passo</button>
+            <button type="button" id="pgpt-ricomincia" disabled>Ricomincia</button>
+          </div>
+          <p class="pgpt-stato" id="pgpt-stato" role="status">Carico i pesi del modello (0,8 MB)&hellip;</p>
+          <p class="pgpt-aiuto">Da provare: «Un passo» per vedere la scelta; la
+            temperatura agli estremi; una testa di attenzione. E scrivete voi
+            l&rsquo;inizio: anche una domanda.</p>
+        </div>
+      </div>
+
+      <details class="pgpt-rx" id="pgpt-rx">
+        <summary>LA RADIOGRAFIA: IL VIAGGIO DI UN CARATTERE NEI QUATTRO BLOCCHI</summary>
+        <div class="pgpt-conduttura">
+          <div class="pgpt-st">
+            <span class="nome">EMBEDDING</span>
+            <canvas width="128" height="12" aria-hidden="true"></canvas>
+            <span class="lente" data-lente="0"></span>
+          </div>
+          <button type="button" class="pgpt-st" aria-pressed="false" data-blocco="0">
+            <span class="nome">BLOCCO 1</span>
+            <canvas width="128" height="12" aria-hidden="true"></canvas>
+            <span class="lente" data-lente="1"></span>
+          </button>
+          <button type="button" class="pgpt-st" aria-pressed="false" data-blocco="1">
+            <span class="nome">BLOCCO 2</span>
+            <canvas width="128" height="12" aria-hidden="true"></canvas>
+            <span class="lente" data-lente="2"></span>
+          </button>
+          <button type="button" class="pgpt-st" aria-pressed="false" data-blocco="2">
+            <span class="nome">BLOCCO 3</span>
+            <canvas width="128" height="12" aria-hidden="true"></canvas>
+            <span class="lente" data-lente="3"></span>
+          </button>
+          <button type="button" class="pgpt-st scelto" aria-pressed="true" data-blocco="3">
+            <span class="nome">BLOCCO 4</span>
+            <canvas width="128" height="12" aria-hidden="true"></canvas>
+            <span class="lente" data-lente="4"></span>
+          </button>
+          <div class="pgpt-st uscita">
+            <span class="nome">USCITA</span>
+            <span class="lente esce" data-lente="5"></span>
+          </div>
+        </div>
+        <p class="pgpt-rx-nota">
+          I blocchi si parlano attraverso un unico vettore di 128 numeri,
+          quello che in letteratura si chiama <a href="https://transformer-circuits.pub/2021/framework/index.html"><em>flusso residuo</em></a>.
+          L&rsquo;embedding lo crea - è il ritratto in numeri del
+          carattere appena entrato: di quel carattere solo, più la sua
+          posizione nel testo - e ogni blocco lo legge, calcola la sua
+          correzione e <strong>la somma al vettore</strong>, senza
+          sostituirlo: per questo si dice «residuo». Quello che arriva
+          all&rsquo;uscita è il vettore di partenza più i quattro
+          contributi accumulati. Le strisce qui sopra sono esattamente
+          questo vettore, fotografato in cinque punti del viaggio
+          (colore: segno; intensità: grandezza). Nei modelli grandi lo
+          schema è identico - solo che il vettore, invece di 128 numeri,
+          ne ha migliaia, e i conti girano di solito a 16 bit per
+          velocità.
+        </p>
+        <p class="pgpt-rx-nota">
+          Sotto ogni stazione, la riga «direbbe:» risponde a una domanda
+          semplice: <strong>se il viaggio finisse qui, che carattere
+          uscirebbe?</strong> Si prende il vettore com&rsquo;è in quel
+          punto e lo si consegna in anticipo all&rsquo;uscita (il trucco
+          in letteratura si chiama <a href="https://www.lesswrong.com/posts/AcKRB8wDpdaN6v6ru/interpreting-gpt-the-logit-lens"><em>logit lens</em></a>): confrontando le
+          righe si vede la scelta cambiare e maturare da un blocco
+          all&rsquo;altro. E si capisce perché la riga
+          dell&rsquo;embedding è quasi sempre la più ingenua: a quella
+          stazione il vettore sa soltanto quale carattere è entrato e
+          dove si trova - il resto del testo arriva solo dopo, portato
+          dentro dall&rsquo;attenzione dei blocchi. I quattro blocchi sono anche pulsanti:
+          cliccandone uno, l&rsquo;evidenziazione sul testo mostra dove
+          guardano le teste di quel blocco.
+        </p>
+        <p class="pgpt-rx-nota">
+          Perché proprio quattro blocchi? È una scelta di misura: più
+          blocchi danno testo migliore ma pesi più pesanti da scaricare,
+          e quattro è il punto in cui questo modello sta in
+          0,8&nbsp;MB restando istruttivo (i grandi ne impilano da decine
+          a oltre cento, con lo stesso schema). E che cosa fa ciascuno?
+          Nessuno lo decide, nemmeno chi li
+          costruisce: <strong>sono identici per costruzione, senza compiti
+          assegnati</strong>. La divisione del lavoro emerge da
+          sola con l&rsquo;addestramento - e il «direbbe» la mostra: nei
+          primi blocchi la predizione è ancora generica, quasi ortografica;
+          salendo si affina, e l&rsquo;ultimo blocco è quello che decide. I
+          ruoli non si programmano, si formano.
+        </p>
+      </details>
+    </div>
+</main>
+<script>
+(() => {
+  "use strict";
+  const BASE = "../"; // in questo repository i pesi stanno nella cartella sopra
+  const $ = (id) => document.getElementById(id);
+  const stato = $("pgpt-stato");
+
+  /* ---- caricamento e dequantizzazione ---- */
+  let M = null; // { cfg, voc, stoi, T: {nome -> {r, c, d(Float32Array)}} }
+  async function carica() {
+    // i due file partono insieme: un giro di rete solo, non due in fila
+    const [man, blob] = await Promise.all([
+      fetch(BASE + "manifest.json").then((r) => r.json()),
+      fetch(BASE + "pesi.bin").then((r) => r.arrayBuffer()),
+    ]);
+    const T = {};
+    for (const v of man.tensori) {
+      const [r, c] = v.forma.length === 2 ? v.forma : [v.forma[0], 1];
+      if (v.tipo === "int8_riga") {
+        const q = new Int8Array(blob, v.offset, r * c);
+        const s = new Float32Array(blob.slice(v.offset_scale, v.offset_scale + 4 * r));
+        const d = new Float32Array(r * c);
+        for (let i = 0; i < r; i++) {
+          const si = s[i];
+          for (let j = 0; j < c; j++) d[i * c + j] = q[i * c + j] * si;
+        }
+        T[v.nome] = { r, c, d };
+      } else {
+        T[v.nome] = { r, c: 1, d: new Float32Array(blob.slice(v.offset, v.offset + 4 * r)) };
+      }
+    }
+    const voc = man.vocabolario;
+    const stoi = {};
+    for (let i = 0; i < voc.length; i++) stoi[voc[i]] = i;
+    M = { cfg: man.config, voc, stoi, T };
+    preparaScratch();
+  }
+
+  /* I vettori di lavoro dell'inferenza, allocati una volta per tutte:
+     dentro i cicli caldi non nasce spazzatura e il raccoglitore di memoria
+     non interrompe la generazione (si sente soprattutto sui telefoni). */
+  let sc = null;
+  function preparaScratch() {
+    const { n_embd: E, block_size: B, vocab_size: V } = M.cfg;
+    sc = {
+      x: new Float32Array(E),
+      h: new Float32Array(E),
+      qkv: new Float32Array(3 * E),
+      y: new Float32Array(E),
+      proi: new Float32Array(E),
+      fc: new Float32Array(4 * E),
+      mlp: new Float32Array(E),
+      xf: new Float32Array(E),
+      logits: new Float32Array(V),
+      pesi: new Float32Array(B),
+      lg: new Float32Array(V),
+      pr: new Float32Array(V),
+    };
+  }
+
+  /* ---- il modello: inferenza con cache di chiavi e valori ---- */
+  const S = { seq: [], testoIniz: 0, cacheK: [], cacheV: [], att: null, probs: null, top: [], scelto: -1 };
+  function azzera() {
+    const { n_layer, block_size, n_embd } = M.cfg;
+    S.seq = []; S.att = null; S.probs = null; S.top = []; S.scelto = -1;
+    S.cacheK = []; S.cacheV = [];
+    for (let l = 0; l < n_layer; l++) {
+      S.cacheK.push(new Float32Array(block_size * n_embd));
+      S.cacheV.push(new Float32Array(block_size * n_embd));
+    }
+  }
+  function ln(x, w, out) {
+    const n = x.length; let m = 0, v = 0;
+    for (let i = 0; i < n; i++) m += x[i];
+    m /= n;
+    for (let i = 0; i < n; i++) { const dlt = x[i] - m; v += dlt * dlt; }
+    const inv = 1 / Math.sqrt(v / n + 1e-5);
+    for (let i = 0; i < n; i++) out[i] = (x[i] - m) * inv * w.d[i];
+    return out;
+  }
+  function matvec(W, x, out) {
+    const { r, c, d } = W;
+    for (let i = 0; i < r; i++) {
+      let s = 0; const base = i * c;
+      for (let j = 0; j < c; j++) s += d[base + j] * x[j];
+      out[i] = s;
+    }
+    return out;
+  }
+  function gelu(x) {
+    for (let i = 0; i < x.length; i++) {
+      const t = x[i];
+      x[i] = 0.5 * t * (1 + Math.tanh(0.7978845608 * (t + 0.044715 * t * t * t)));
+    }
+    return x;
+  }
+  /* I k indici piu' probabili con una scansione sola: niente copia e
+     ordinamento dell'intero vocabolario a ogni passo. */
+  function migliori(pr, k) {
+    const out = [];
+    for (let i = 0; i < pr.length; i++) {
+      const p = pr[i];
+      if (out.length === k && p <= pr[out[k - 1]]) continue;
+      let j = out.length;
+      while (j > 0 && pr[out[j - 1]] < p) j--;
+      out.splice(j, 0, i);
+      if (out.length > k) out.pop();
+    }
+    return out;
+  }
+  /* Un passo: elabora il token in posizione pos (già in S.seq), riempie la
+     cache, e restituisce i logit del prossimo carattere più l'attenzione
+     dell'ultimo passo (per testa, sul contesto). */
+  function passoModello(tok, pos, raccogliAtt) {
+    const { n_layer, n_head, n_embd } = M.cfg;
+    const E = n_embd, H = n_head, hd = E / H, Tq = pos + 1;
+    const T = M.T, x = sc.x;
+    const wte = T["transformer.wte.weight"], wpe = T["transformer.wpe.weight"];
+    for (let i = 0; i < E; i++) x[i] = wte.d[tok * E + i] + wpe.d[pos * E + i];
+    const rx = raccogliAtt ? { flusso: [Float32Array.from(x)], lente: [], att: [] } : null;
+    const scala = 1 / Math.sqrt(hd);
+    for (let l = 0; l < n_layer; l++) {
+      const p = "transformer.h." + l + ".";
+      const h = ln(x, T[p + "ln_1.weight"], sc.h);
+      const qkv = matvec(T[p + "attn.c_attn.weight"], h, sc.qkv);
+      const K = S.cacheK[l], V = S.cacheV[l];
+      for (let i = 0; i < E; i++) { K[pos * E + i] = qkv[E + i]; V[pos * E + i] = qkv[2 * E + i]; }
+      const y = sc.y.fill(0);
+      const attBlocco = rx ? [] : null;
+      const pesi = sc.pesi;
+      for (let t = 0; t < H; t++) {
+        const q0 = t * hd;
+        let mx = -1e30;
+        for (let j = 0; j < Tq; j++) {
+          let s = 0;
+          const k0 = j * E + q0;
+          for (let i = 0; i < hd; i++) s += qkv[q0 + i] * K[k0 + i];
+          s *= scala;
+          pesi[j] = s; if (s > mx) mx = s;
+        }
+        let somma = 0;
+        for (let j = 0; j < Tq; j++) { const e = Math.exp(pesi[j] - mx); pesi[j] = e; somma += e; }
+        const inv = 1 / somma;
+        for (let j = 0; j < Tq; j++) pesi[j] *= inv;
+        if (attBlocco) attBlocco.push(pesi.slice(0, Tq));
+        for (let j = 0; j < Tq; j++) {
+          const w = pesi[j];
+          const v0 = j * E + q0;
+          for (let i = 0; i < hd; i++) y[q0 + i] += w * V[v0 + i];
+        }
+      }
+      const proi = matvec(T[p + "attn.c_proj.weight"], y, sc.proi);
+      for (let i = 0; i < E; i++) x[i] += proi[i];
+      const h2 = ln(x, T[p + "ln_2.weight"], sc.h);
+      const mlp = matvec(T[p + "mlp.c_proj.weight"], gelu(matvec(T[p + "mlp.c_fc.weight"], h2, sc.fc)), sc.mlp);
+      for (let i = 0; i < E; i++) x[i] += mlp[i];
+      if (rx) { rx.att.push(attBlocco); rx.flusso.push(Float32Array.from(x)); }
+    }
+    const xf = ln(x, T["transformer.ln_f.weight"], sc.xf);
+    const logits = matvec(wte, xf, sc.logits);
+    if (rx) {
+      for (const fase of rx.flusso) {
+        const lg = matvec(wte, ln(fase, T["transformer.ln_f.weight"], sc.xf), sc.lg);
+        let mx = -1e30;
+        for (let i = 0; i < lg.length; i++) if (lg[i] > mx) mx = lg[i];
+        let somma = 0; const pr = sc.pr;
+        for (let i = 0; i < lg.length; i++) { pr[i] = Math.exp(lg[i] - mx); somma += pr[i]; }
+        for (let i = 0; i < lg.length; i++) pr[i] /= somma;
+        rx.lente.push(migliori(pr, 3).map((i) => ({ i, p: pr[i] })));
+      }
+    }
+    return { logits, rx };
+  }
+  function innesca(testo) {
+    azzera();
+    for (const ch of testo) if (M.stoi[ch] !== undefined) S.seq.push(M.stoi[ch]);
+    S.testoIniz = S.seq.length;
+    let esito = null;
+    for (let p = 0; p < S.seq.length; p++)
+      esito = passoModello(S.seq[p], p, p === S.seq.length - 1 && serveRx());
+    return esito;
+  }
+  function unCarattere(esito, temperatura) {
+    const lg = esito.logits, n = lg.length;
+    let mx = -1e30;
+    for (let i = 0; i < n; i++) { lg[i] /= temperatura; if (lg[i] > mx) mx = lg[i]; }
+    let somma = 0; const pr = new Float32Array(n);
+    for (let i = 0; i < n; i++) { pr[i] = Math.exp(lg[i] - mx); somma += pr[i]; }
+    for (let i = 0; i < n; i++) pr[i] /= somma;
+    let r = Math.random(), scelto = n - 1;
+    for (let i = 0; i < n; i++) { r -= pr[i]; if (r <= 0) { scelto = i; break; } }
+    S.probs = pr; S.scelto = scelto; S.rx = esito.rx; S.att = esito.rx ? esito.rx.att : null;
+    S.top = migliori(pr, 10);
+    // finestra piena: il testo mostrato non si accorcia, ma il modello
+    // rinnesca la cache sugli ultimi tre quarti del contesto
+    if (S.seq.length >= M.cfg.block_size) {
+      const coda = S.seq.slice(-Math.floor(M.cfg.block_size * 0.75));
+      const tutto = (S._testoPieno || "") + S.seq.map((i) => M.voc[i]).join("");
+      const codaTesto = coda.map((i) => M.voc[i]).join("");
+      const memoria = tutto.slice(0, tutto.length - codaTesto.length);
+      azzera();
+      S._pieno = true;
+      S._testoPieno = memoria;
+      S.seq = coda.slice();
+      for (let p = 0; p < S.seq.length; p++) passoModello(S.seq[p], p, false);
+    }
+    S.seq.push(scelto);
+    return passoModello(scelto, S.seq.length - 1, serveRx());
+  }
+
+  /* ---- interfaccia ---- */
+  const elTesto = $("pgpt-testo"), elBarre = $("pgpt-barre"), elFin = $("pgpt-finestra");
+  let testaScelta = -1, bloccoScelto = 3, timer = null, ultimoEsito = null;
+  const elRx = $("pgpt-rx");
+  const canvasSt = [...document.querySelectorAll(".pgpt-st canvas")];
+  const lenteSt = {};
+  for (const el of document.querySelectorAll("[data-lente]")) lenteSt[el.dataset.lente] = el;
+  const stazioni = [...document.querySelectorAll(".pgpt-st")];
+  const bottoniBlocco = [...document.querySelectorAll("button.pgpt-st")];
+  const bottoniTesta = [...document.querySelectorAll(".pgpt-mini")];
+  const riduciMoto = window.matchMedia("(prefers-reduced-motion: reduce)");
+  /* La radiografia si calcola solo quando qualcosa la mostra: pannello
+     aperto o una testa accesa. Sui telefoni parte chiusa e spenta, e ogni
+     passo risparmia le sei lenti e le copie del flusso. */
+  function serveRx() { return elRx.open || testaScelta >= 0; }
+  /* Quando l'utente la accende a meta' strada, la si ricostruisce: prima
+     il passo in mostra (quello che ha scelto l'ultimo carattere), poi
+     l'ultimo passo, cosi' i logit di lavoro restano quelli giusti. */
+  function ricalcolaRx() {
+    if (!M || !ultimoEsito || !S.seq.length || ultimoEsito.rx) return;
+    const len = S.seq.length;
+    if (S.probs && len >= 2 && !S.rx) {
+      S.rx = passoModello(S.seq[len - 2], len - 2, true).rx;
+      S.att = S.rx.att;
+    }
+    ultimoEsito = passoModello(S.seq[len - 1], len - 1, true);
+    if (!S.rx) { S.rx = ultimoEsito.rx; S.att = S.rx.att; }
+  }
+  /* I colori del tema, letti una volta e tenuti da parte: getComputedStyle
+     a ogni fotogramma costa un ricalcolo di stile. La scorta si svuota se
+     il tema cambia. */
+  const sonda = document.createElement("span");
+  sonda.style.display = "none";
+  document.body.appendChild(sonda);
+  let tinte = {};
+  let tinteRGB = {};
+  function colore(nomeVar) {
+    let t = tinte[nomeVar];
+    if (!t) {
+      sonda.style.color = "var(" + nomeVar + ")";
+      tinte[nomeVar] = t = getComputedStyle(sonda).color;
+    }
+    return t;
+  }
+  // il canale rgb per i canvas: si dipinge un pixel e lo si rilegge, senza
+  // dover interpretare la stringa del colore
+  const cvSonda = document.createElement("canvas");
+  cvSonda.width = 1; cvSonda.height = 1;
+  function coloreRGB(nomeVar) {
+    let t = tinteRGB[nomeVar];
+    if (!t) {
+      const g = cvSonda.getContext("2d", { willReadFrequently: true });
+      g.clearRect(0, 0, 1, 1);
+      g.fillStyle = colore(nomeVar);
+      g.fillRect(0, 0, 1, 1);
+      tinteRGB[nomeVar] = t = g.getImageData(0, 0, 1, 1).data.slice(0, 3);
+    }
+    return t;
+  }
+  function scordaTinte() { tinte = {}; tinteRGB = {}; disegnaRx(); }
+  window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", scordaTinte);
+  new MutationObserver(scordaTinte).observe(document.documentElement, { attributes: true, attributeFilter: ["data-theme"] });
+  function glifo(ch) {
+    if (ch === " ") return "␣";
+    if (ch === "\n") return "⏎";
+    return ch;
+  }
+  /* Il testo piu' vecchio della finestra e' un unico nodo di testo: uno
+     span per carattere serve solo ai (al piu') 128 caratteri che il
+     modello vede. Senza questo limite, dopo qualche minuto la pagina
+     ricostruirebbe migliaia di nodi a ogni carattere. */
+  const nodoMemoria = document.createTextNode("");
+  const nodoCtx = document.createElement("span");
+  elTesto.append(nodoMemoria, nodoCtx);
+  function disegnaTesto() {
+    const memoria = S._testoPieno || "";
+    if (nodoMemoria.data !== memoria) nodoMemoria.data = memoria;
+    const att = (testaScelta >= 0 && S.att) ? S.att[bloccoScelto][testaScelta] : null;
+    let mxA = 0;
+    if (att) for (let k = 0; k < att.length; k++) if (att[k] > mxA) mxA = att[k];
+    const frag = document.createDocumentFragment();
+    for (let j = 0; j < S.seq.length; j++) {
+      const s = document.createElement("span");
+      s.textContent = M.voc[S.seq[j]];
+      s.className = "ctx";
+      if (att && j < att.length) {
+        const p = mxA > 0 ? att[j] / mxA : 0;
+        if (p > 0.08) s.style.background =
+          "color-mix(in oklab, var(--color-accent-secondary) " + Math.round(8 + p * 52) + "%, transparent)";
+      }
+      if (j === S.seq.length - 1) s.classList.add("cur");
+      frag.appendChild(s);
+    }
+    nodoCtx.replaceChildren(frag);
+    elTesto.scrollTop = elTesto.scrollHeight;
+    elFin.textContent = "· il modello vede gli ultimi " + S.seq.length + " caratteri";
+  }
+  /* Le dieci righe della classifica si costruiscono una volta sola e poi
+     si aggiornano sul posto: a ogni passo cambiano testi e larghezze, non
+     i nodi. */
+  const righeBarre = [];
+  function preparaBarre() {
+    const frag = document.createDocumentFragment();
+    for (let k = 0; k < 10; k++) {
+      const riga = document.createElement("div");
+      riga.className = "pgpt-riga";
+      const g = document.createElement("span"); g.className = "glifo";
+      const asta = document.createElement("span"); asta.className = "asta";
+      const dentro = document.createElement("i");
+      asta.appendChild(dentro);
+      const pct = document.createElement("span"); pct.className = "pct";
+      riga.append(g, asta, pct);
+      frag.appendChild(riga);
+      righeBarre.push({ riga, g, dentro, pct });
+    }
+    elBarre.replaceChildren(frag);
+  }
+  function disegnaBarre() {
+    if (!S.probs) return;
+    if (!righeBarre.length) preparaBarre();
+    for (let k = 0; k < righeBarre.length && k < S.top.length; k++) {
+      const el = righeBarre[k], i = S.top[k];
+      el.riga.className = "pgpt-riga" + (i === S.scelto ? " scelta" : "");
+      el.g.textContent = glifo(M.voc[i]);
+      el.dentro.style.width = Math.max(1.5, S.probs[i] * 100) + "%";
+      const v = S.probs[i] * 100;
+      el.pct.textContent = v < 0.05 ? "<0,1%" : v.toFixed(1).replace(".", ",") + "%";
+    }
+  }
+  let strisciaImg = null;
+  function disegnaRx() {
+    if (!elRx.open || !S.rx) return;
+    const acc = coloreRGB("--color-accent"), sec = coloreRGB("--color-accent-secondary");
+    S.rx.flusso.forEach((v, k) => {
+      const cv = canvasSt[k];
+      if (!cv) return;
+      const g = cv.getContext("2d");
+      // un putImageData al posto di 128 fillRect per striscia
+      if (!strisciaImg) strisciaImg = g.createImageData(128, 12);
+      const dati = strisciaImg.data;
+      let mx = 1e-9;
+      for (let i = 0; i < v.length; i++) { const a = Math.abs(v[i]); if (a > mx) mx = a; }
+      for (let i = 0; i < 128; i++) {
+        const val = i < v.length ? v[i] / mx : 0;
+        const t = val >= 0 ? acc : sec;
+        const o = i * 4;
+        dati[o] = t[0]; dati[o + 1] = t[1]; dati[o + 2] = t[2];
+        dati[o + 3] = Math.min(255, Math.round(Math.abs(val) * 255));
+      }
+      for (let r = 1; r < 12; r++) dati.copyWithin(r * 512, 0, 512);
+      g.putImageData(strisciaImg, 0, 0);
+    });
+    S.rx.lente.forEach((top, k) => {
+      lenteSt[k].textContent = "direbbe: " +
+        top.map((o) => glifo(M.voc[o.i]) + " " + (o.p * 100).toFixed(0) + "%").join(" · ");
+    });
+    if (S.probs && S.top.length) {
+      lenteSt[5].textContent = "esce: " + glifo(M.voc[S.scelto]) +
+        " (pescato fra " + S.top.slice(0, 3).map((i) => glifo(M.voc[i]) + " " + (S.probs[i] * 100).toFixed(0) + "%").join(" · ") + ")";
+    }
+    if (!riduciMoto.matches) {
+      stazioni.forEach((el, i) => {
+        setTimeout(() => {
+          el.classList.add("viva");
+          setTimeout(() => el.classList.remove("viva"), 130);
+        }, i * 45);
+      });
+    }
+  }
+  function unPasso() {
+    const t = parseFloat($("pgpt-temp").value);
+    ultimoEsito = unCarattere(ultimoEsito, t);
+    disegnaTesto(); disegnaBarre(); disegnaRx();
+    if (S._pieno) {
+      S._pieno = false;
+      stato.textContent = "Finestra piena: dimentico i caratteri più vecchi.";
+    }
+  }
+  function ricomincia() {
+    ferma();
+    S._testoPieno = "";
+    const libero = $("pgpt-libero").value.trim();
+    ultimoEsito = innesca((libero || $("pgpt-incipit").value) + "\n");
+    S.rx = ultimoEsito.rx; S.att = ultimoEsito.rx ? ultimoEsito.rx.att : null;
+    disegnaTesto(); disegnaBarre(); disegnaRx();
+    stato.textContent = libero
+      ? "Nota: il modello non risponde, continua. È un modello senza rifinitura: sa solo proseguire la Commedia."
+      : "Pronto: 800.000 parametri in ascolto.";
+  }
+  function ferma() {
+    if (timer) {
+      clearInterval(timer); timer = null;
+      $("pgpt-genera").textContent = "Genera";
+      stato.textContent = "Pronto: 800.000 parametri in ascolto.";
+    }
+  }
+  let rxProposta = false;
+  function proponiRx() {
+    if (!rxProposta) {
+      rxProposta = true;
+      if (!elRx.open && window.matchMedia("(min-width: 62em)").matches) elRx.open = true;
+    }
+  }
+  function generaToggle() {
+    if (timer) { ferma(); return; }
+    proponiRx();
+    $("pgpt-genera").textContent = "Ferma";
+    stato.textContent = "Scrivo: una decina di caratteri al secondo\u2026";
+    timer = setInterval(unPasso, 90);
+  }
+
+  $("pgpt-genera").addEventListener("click", generaToggle);
+  $("pgpt-passo").addEventListener("click", () => { ferma(); proponiRx(); unPasso(); });
+  $("pgpt-ricomincia").addEventListener("click", ricomincia);
+  $("pgpt-incipit").addEventListener("change", () => { $("pgpt-libero").value = ""; ricomincia(); });
+  $("pgpt-libero").addEventListener("keydown", (e) => { if (e.key === "Enter") ricomincia(); });
+  $("pgpt-temp").addEventListener("input", () => {
+    $("pgpt-temp-v").textContent = parseFloat($("pgpt-temp").value).toFixed(1).replace(".", ",");
+  });
+  for (const b of bottoniBlocco) {
+    b.addEventListener("click", () => {
+      for (const x of bottoniBlocco) { x.classList.remove("scelto"); x.setAttribute("aria-pressed", "false"); }
+      b.classList.add("scelto");
+      b.setAttribute("aria-pressed", "true");
+      bloccoScelto = parseInt(b.dataset.blocco, 10);
+      $("pgpt-blocco-eti").textContent = bloccoScelto + 1;
+      disegnaTesto();
+    });
+  }
+  elRx.addEventListener("toggle", () => { if (elRx.open) ricalcolaRx(); disegnaRx(); });
+  for (const b of bottoniTesta) {
+    b.addEventListener("click", () => {
+      for (const x of bottoniTesta) { x.classList.remove("attiva"); x.setAttribute("aria-pressed", "false"); }
+      b.classList.add("attiva");
+      b.setAttribute("aria-pressed", "true");
+      testaScelta = parseInt(b.dataset.testa, 10);
+      if (testaScelta >= 0) ricalcolaRx();
+      disegnaTesto();
+    });
+  }
+
+  carica().then(() => {
+    for (const id of ["pgpt-genera", "pgpt-passo", "pgpt-ricomincia"]) $(id).disabled = false;
+    ricomincia();
+  }).catch((e) => { stato.textContent = "Non riesco a caricare i pesi: " + e.message; });
+})();
+</script>
+</body>
+</html>

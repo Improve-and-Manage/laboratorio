@@ -44,8 +44,10 @@ con la versione in linea.
   risposte simulate e dichiarate come tali. Articolo:
   [L'addestramento che fa la differenza](https://www.improveandmanage.com/l-addestramento-che-fa-la-differenza/).
 
-La cartella `piccolo-gpt/` contiene i pesi e la descrizione del modello che il widget del
-Transformer carica.
+Il widget del Transformer carica il modello del piccolo GPT. I suoi pesi (`pesi.bin`) e la sua
+descrizione (`manifest.json`) stavano anche in una cartella `piccolo-gpt/` qui dentro; nel
+laboratorio sono stati spostati, identici, nella cartella [`../piccolo-gpt/`](../piccolo-gpt/),
+insieme agli strumenti per riaddestrare il modello, così che ne esista una sola copia.
 
 ## La segmentatrice è diventata un duello
 
