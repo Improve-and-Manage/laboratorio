@@ -5,7 +5,7 @@ I programmi che accompagnano l'articolo
 di Improve and Manage. Nessuna dipendenza: basta Python 3. Le immagini delle
 cifre vengono dalla raccolta pubblica [MNIST](https://storage.googleapis.com/cvdf-datasets/mnist/)
 e si scaricano da internet alla prima esecuzione, nella cartella `dati/` -
-come nel [repository gemello del percettrone](https://github.com/Improve-and-Manage/percettrone).
+come nella [cartella del percettrone](../percettrone/).
 
 ## I due programmi
 
@@ -25,8 +25,8 @@ a b | almeno uno  entrambi | uscita (XOR)
 
 **`rete_multistrato.py`** addestra con la retropropagazione una rete
 784-64-10 (uno strato nascosto di 64 neuroni con sigmoide, dieci uscite con
-softmax, 50.890 parametri) sulle stesse cifre su cui il repository gemello
-misura il percettrone all'83,2%. I semi casuali sono fissati e l'esito è
+softmax, 50.890 parametri) sulle stesse cifre su cui il programma della cartella del percettrone
+arriva all'83,2%. I semi casuali sono fissati e l'esito è
 riproducibile al decimale:
 
 ```

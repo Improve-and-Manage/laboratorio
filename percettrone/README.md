@@ -1,10 +1,10 @@
 # Il percettrone
 
 Il programma che accompagna l'articolo
-[Il percettrone: la prima macchina che impara i propri pesi](https://www.improveandmanage.com/il-percettrone-origine-funzionamento-e-limiti/)
+[Il percettrone: la prima macchina che impara le proprie regole](https://www.improveandmanage.com/il-percettrone-origine-funzionamento-e-limiti/)
 di Improve and Manage: la stessa anatomia (pesi, soglia, gradino), la stessa
 regola di apprendimento e la stessa scelta per somma pesata più alta descritte
-nel pezzo, senza nient'altro.
+nell'articolo, senza nient'altro.
 
 Nessuna dipendenza: basta Python 3. Le immagini delle cifre non sono nel
 repository: vengono dalla raccolta pubblica [MNIST](https://storage.googleapis.com/cvdf-datasets/mnist/)
@@ -72,7 +72,8 @@ percettrone», diceva Novikoff - e le dieci cifre di MNIST **non lo sono**:
 nessun insieme di rette divide perfettamente un 4 da un 9 in tutte le grafie.
 Fuori dalla garanzia, la regola continua a correggere senza potersi assestare,
 e il punteggio sale e scende a ogni giro. Come si impara anche quando nessuna
-retta basta è il tema del pezzo successivo della serie, sulle reti multistrato.
+retta basta è il tema dell'articolo successivo della serie, sulle reti multistrato, con il
+suo codice nella cartella [`../rete-multistrato/`](../rete-multistrato/).
 
 ## Licenza
 
