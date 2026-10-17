@@ -5,14 +5,15 @@ authors:
   - family-names: Malpezzi
     given-names: Fabio
     affiliation: "Improve and Manage"
-date-released: 2026-10-01
-version: "0.1.0"
+date-released: 2026-10-17
+version: "0.2.0"
 license: MIT
 url: "https://www.improveandmanage.com"
 abstract: >-
   Conto descrittivo sui file mIcro.STAT della Rilevazione sulle forze di lavoro dell'Istat,
-  2021-2025: occupazione, retribuzione in decili e grande gruppo professionale dei laureati con
-  titolo da 0 a 2 anni, per area disciplinare, prima e dopo la diffusione di ChatGPT.
+  dal 2021 al secondo trimestre 2026: occupazione, retribuzione in decili e grande gruppo
+  professionale dei laureati con titolo da 0 a 2 anni, per area disciplinare, prima e dopo la
+  diffusione di ChatGPT.
 references:
   - type: data
     title: "Rilevazione sulle forze di lavoro, file mIcro.STAT ad uso pubblico"
