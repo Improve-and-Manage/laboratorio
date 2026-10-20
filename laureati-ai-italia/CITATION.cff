@@ -1,20 +1,29 @@
 cff-version: 1.2.0
-message: "Se usi questo conto, citalo così."
-title: "Dove lavorano i laureati recenti italiani dopo ChatGPT: un primo conto sui microdati Istat"
+message: "Se usi questa analisi, citala così."
+title: "Dove lavorano i laureati recenti italiani dopo ChatGPT: una prima analisi sui microdati Istat"
 authors:
   - family-names: Malpezzi
     given-names: Fabio
     affiliation: "Improve and Manage"
-date-released: 2026-10-17
-version: "0.2.0"
+date-released: 2026-10-20
+version: "0.2.1"
 license: MIT
-url: "https://www.improveandmanage.com"
+url: "https://www.improveandmanage.com/ai-e-lavoro-in-italia-neolaureati-in-ingegneria-e-informatica/"
 abstract: >-
-  Conto descrittivo sui file mIcro.STAT della Rilevazione sulle forze di lavoro dell'Istat,
+  Analisi descrittiva sui file mIcro.STAT della Rilevazione sulle forze di lavoro dell'Istat,
   dal 2021 al secondo trimestre 2026: occupazione, retribuzione in decili e grande gruppo
   professionale dei laureati con titolo da 0 a 2 anni, per area disciplinare, prima e dopo la
   diffusione di ChatGPT.
 references:
+  - type: article
+    title: "In Italia l'AI, finora, non rende più difficile ai neolaureati in ingegneria e informatica trovare un buon lavoro"
+    authors:
+      - family-names: Malpezzi
+        given-names: Fabio
+    publisher:
+      name: "Improve and Manage"
+    date-published: 2026-10-20
+    url: "https://www.improveandmanage.com/ai-e-lavoro-in-italia-neolaureati-in-ingegneria-e-informatica/"
   - type: data
     title: "Rilevazione sulle forze di lavoro, file mIcro.STAT ad uso pubblico"
     authors:

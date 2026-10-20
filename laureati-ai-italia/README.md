@@ -5,7 +5,8 @@ laureati con titolo da 0 a 2 anni, divisi per area di studio, lavorano più o me
 pagati più o meno degli altri dipendenti? In quale grande gruppo professionale entrano? Il
 confronto è fra il 2021-2022 e il periodo che va dal 2023 al secondo trimestre 2026.
 
-L'analisi accompagna un articolo di Improve and Manage in preparazione. Nasce come risposta
+L'analisi accompagna l'articolo di Improve and Manage [*In Italia l'AI, finora, non rende più difficile ai neolaureati in ingegneria e informatica trovare un buon lavoro*](https://www.improveandmanage.com/ai-e-lavoro-in-italia-neolaureati-in-ingegneria-e-informatica/)
+(20 ottobre 2026). Nasce come risposta
 italiana allo studio dello U.S. Census Bureau
 [*Graduating into Disruption*](https://www.census.gov/library/working-papers/2026/adrm/CES-WP-26-56.html)
 (CES Working Paper 26-56, settembre 2026).
