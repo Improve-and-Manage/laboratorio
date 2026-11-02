@@ -39,6 +39,9 @@ Ogni cartella è un progetto a sé, con il suo README.
   per capire se dopo ChatGPT quelli delle aree più esposte all'intelligenza artificiale trovano
   lavoro meno spesso, guadagnano meno o entrano in professioni meno qualificate. Articolo in
   preparazione.
+- [`widget-rappresentazioni-condivise/`](widget-rappresentazioni-condivise/): tre esperimenti visivi
+  su viste dello stesso oggetto, allineamento delle rappresentazioni e pianificazione in uno spazio
+  predittivo. Accompagnano una serie in preparazione su JEPA e interpretabilità.
 
 ## Come si usa
 
