@@ -11,6 +11,7 @@
   padding: 1.5rem 0 1.25rem;
   color: var(--rc-ink);
   font-family: "Instrument Sans", system-ui, sans-serif;
+  container: rc-widget / inline-size;
 }
 
 .rc-widget * { box-sizing: border-box; }
@@ -107,6 +108,13 @@
 .ct-node--output strong::after { font-size: clamp(.78rem, 2vw, .94rem); }
 .ct-remainder { max-width: 42rem; margin: .8rem auto 0; border: 1px dashed var(--rc-line); border-radius: 6px; padding: .55rem .8rem; color: var(--rc-muted); font: 500 .7rem/1.35 "JetBrains Mono", monospace; text-align: center; }
 .ct-controls button[aria-pressed="true"] { border-color: var(--rc-ink); background: var(--rc-ink); color: var(--rc-paper); }
+
+@container rc-widget (max-width: 40rem) {
+  .ct-graph { grid-template-columns: 1fr; gap: .35rem; }
+  .ct-node { width: min(100%, 13rem); min-height: 3.6rem; margin: 0 auto; }
+  .ct-arrow { width: 1px; height: 1.2rem; margin: 0 auto; }
+  .ct-arrow::after { top: auto; right: -3px; bottom: 0; transform: rotate(135deg); }
+}
 
 @media (max-width: 560px) {
   .rc-widget { padding-top: 1.25rem; }
