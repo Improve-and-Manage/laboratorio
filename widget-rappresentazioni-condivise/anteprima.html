@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Tre esperimenti sulle rappresentazioni condivise</title>
+  <title>Cinque esperimenti sulle rappresentazioni condivise</title>
   <link rel="icon" href="data:,">
   <link rel="stylesheet" href="widget.css">
   <style>
@@ -16,7 +16,7 @@
   </style>
 </head>
 <body>
-  <header><p class="rc-widget__eyebrow">Laboratorio · bozza pubblica</p><h1>Capire con le mani.</h1><p>Tre idee della ricerca sulle rappresentazioni, ridotte alla loro forma manipolabile. I dati sono sintetici: qui osserviamo il meccanismo, non misuriamo un modello.</p></header>
+  <header><p class="rc-widget__eyebrow">Laboratorio · bozza pubblica</p><h1>Capire con le mani.</h1><p>Cinque idee della ricerca sulle rappresentazioni, ridotte alla loro forma manipolabile. I dati sono sintetici o ricostruiti dalle fonti: qui osserviamo il meccanismo, non misuriamo un modello.</p></header>
 
   <section class="rc-widget" data-cp-widget aria-labelledby="cp-title">
     <p class="rc-widget__eyebrow">Esperimento 1 · le viste</p><h3 id="cp-title">Che cosa resta in comune?</h3>
@@ -60,6 +60,50 @@
     <p class="rc-widget__result" data-tr-result aria-live="polite">La linea d’aria indica una direzione; non dice se quella direzione è percorribile.</p>
     <p class="rc-widget__note"><span>Ambiente e traiettoria ridisegnati a scopo didattico.</span><a href="https://github.com/facebookresearch/eb_jepa">Problema originale: eb_jepa ↗</a></p>
   </section>
-  <script src="coppie/widget.js"></script><script src="rotazione/widget.js"></script><script src="two-rooms/widget.js"></script>
+
+  <header><p class="rc-widget__eyebrow">Secondo articolo · leggere e intervenire</p><h1>Dalla traccia alla prova.</h1><p>Due ricostruzioni didattiche mostrano la differenza fra rendere visibile un contenuto e modificare il passaggio che sembra usarlo.</p></header>
+
+  <div class="rc-proof-scale" aria-label="Tre gradi della prova">
+    <div class="rc-proof-scale__step"><span class="rc-proof-scale__number">01</span><strong>Lettura</strong><span>Associa un contenuto a un’attivazione.</span></div>
+    <div class="rc-proof-scale__step"><span class="rc-proof-scale__number">02</span><strong>Attribuzione</strong><span>Propone un percorso verso l’uscita.</span></div>
+    <div class="rc-proof-scale__step"><span class="rc-proof-scale__number">03</span><strong>Intervento</strong><span>Modifica un passaggio e osserva l’effetto.</span></div>
+  </div>
+
+  <section class="rc-widget" data-js-widget aria-labelledby="js-title">
+    <p class="rc-widget__eyebrow">Esperimento 4 · il concetto intermedio</p><h3 id="js-title">Il concetto che cambia la risposta</h3>
+    <p class="rc-widget__intro">La parola “ragno” non compare nel prompt. Seguiamo la lettura pubblicata dagli autori, poi sostituiamo la sua coordinata con “formica”.</p>
+    <div class="rc-widget__stage js-stage" data-js-stage data-phase="read">
+      <p class="js-prompt">«Il numero di zampe dell’animale che tesse ragnatele è <strong>…</strong>»</p>
+      <div class="js-layers" aria-label="Lettura sintetica di cinque fasce di strati">
+        <div class="js-layer"><span class="js-layer__index">inizio</span><span class="js-layer__token"><span data-js-token data-js-default="animale">animale</span></span></div>
+        <div class="js-layer"><span class="js-layer__index">strati 1</span><span class="js-layer__token"><span data-js-token data-js-default="ragnatele">ragnatele</span></span></div>
+        <div class="js-layer"><span class="js-layer__index">strati 2</span><span class="js-layer__token"><span data-js-token data-js-role="concept" data-js-default="ragno">ragno</span></span></div>
+        <div class="js-layer"><span class="js-layer__index">strati 3</span><span class="js-layer__token"><span data-js-token data-js-role="concept" data-js-default="ragno">ragno</span></span></div>
+        <div class="js-layer"><span class="js-layer__index">uscita</span><span class="js-layer__token"><span data-js-token data-js-default="zampe">zampe</span></span></div>
+      </div>
+      <div class="js-output"><span>risposta più probabile</span><span class="js-output__value" data-js-output>8</span></div>
+    </div>
+    <div class="rc-widget__controls"><button class="rc-widget__action" data-js-action>Leggi gli strati</button></div>
+    <p class="rc-widget__result" data-js-result aria-live="polite">Il prompt non contiene la parola “ragno”. La lente cerca il concetto negli strati intermedi.</p>
+    <p class="rc-widget__note"><span>Ricostruzione del risultato pubblicato, non esecuzione del modello.</span><a href="https://transformer-circuits.pub/2026/workspace/index.html">Paper sul J-space ↗</a></p>
+  </section>
+
+  <section class="rc-widget" data-ct-widget aria-labelledby="ct-title">
+    <p class="rc-widget__eyebrow">Esperimento 5 · il circuito</p><h3 id="ct-title">Togli un passaggio dal circuito</h3>
+    <p class="rc-widget__intro">Il sottografo propone una catena per completare il prompt su Dallas. Riduci un supernodo e confronta l’uscita documentata da Neuronpedia.</p>
+    <div class="rc-widget__stage ct-stage" data-ct-stage data-state="intact">
+      <div class="ct-graph" aria-label="Sottografo Dallas, Texas, capitale, Austin">
+        <div class="ct-node"><span><small>testo</small><strong>Dallas</strong></span></div><span class="ct-arrow" aria-hidden="true"></span>
+        <div class="ct-node" data-ct-node="texas"><span><small>supernodo</small><strong>Texas</strong></span></div><span class="ct-arrow" aria-hidden="true"></span>
+        <div class="ct-node" data-ct-node="capital"><span><small>supernodo</small><strong>capitale</strong></span></div><span class="ct-arrow" aria-hidden="true"></span>
+        <div class="ct-node ct-node--output"><span><small>uscita</small><strong aria-live="polite"></strong></span></div>
+      </div>
+      <div class="ct-remainder">Sottografo selezionato · altri contributi e nodi di errore non sono mostrati</div>
+    </div>
+    <div class="rc-widget__controls ct-controls" aria-label="Scegli quale passaggio ridurre"><button data-ct-choice="intact" aria-pressed="true">Circuito integro</button><button data-ct-choice="capital" aria-pressed="false">Riduci “capitale”</button><button data-ct-choice="texas" aria-pressed="false">Riduci “Texas”</button></div>
+    <p class="rc-widget__result" data-ct-result aria-live="polite">Con il sottografo integro, il modello completa con “Austin”.</p>
+    <p class="rc-widget__note"><span>Ricostruzione didattica di un sottografo parziale.</span><a href="https://docs.neuronpedia.org/circuit-tracing/steer-graphs">Caso Dallas su Neuronpedia ↗</a></p>
+  </section>
+  <script src="coppie/widget.js"></script><script src="rotazione/widget.js"></script><script src="two-rooms/widget.js"></script><script src="j-space/widget.js"></script><script src="circuito/widget.js"></script>
 </body>
 </html>
