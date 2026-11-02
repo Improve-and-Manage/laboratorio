@@ -1,11 +1,12 @@
 .rc-widget {
-  --rc-paper: var(--color-bg, #fbfaf7);
-  --rc-paper-soft: var(--color-surface, #f1eee7);
+  --rc-paper: var(--color-surface, #fbfaf7);
+  --rc-paper-soft: var(--color-surface-raised, #f4f2ec);
   --rc-ink: var(--color-text, #16161a);
   --rc-muted: var(--color-text-muted, #6b6b76);
   --rc-line: var(--color-border, #d9d5cc);
   --rc-accent: var(--color-accent, #a6431e);
-  --rc-link: var(--color-link, #1c6b66);
+  --rc-secondary: var(--color-accent-secondary, #1c6b66);
+  --rc-link: var(--color-link, #8a3717);
   margin: 2.5rem 0;
   border-block: 1px solid var(--rc-line);
   padding: 1.5rem 0 1.25rem;
@@ -44,11 +45,11 @@
 .ro-stage svg, .tr-stage svg { display: block; width: 100%; height: auto; }
 .ro-grid { stroke: var(--rc-line); stroke-width: 1; }
 .ro-shape-a { fill: var(--rc-ink); }
-.ro-shape-b { fill: var(--rc-paper); stroke: var(--rc-link); stroke-width: 3; }
+.ro-shape-b { fill: var(--rc-paper); stroke: var(--rc-secondary); stroke-width: 3; }
 .ro-shape-focus { fill: var(--rc-accent); }
 .ro-constellation-b { transform: translate(540px, 165px) rotate(38deg); transform-origin: 0 0; transition: transform 480ms cubic-bezier(.2,.75,.25,1); }
 .ro-stage[data-aligned="true"] .ro-constellation-b { transform: translate(180px, 165px) rotate(0deg); }
-.ro-match { stroke: var(--rc-link); stroke-width: 1.5; stroke-dasharray: 3 5; opacity: 0; transition: opacity 180ms ease 300ms; }
+.ro-match { stroke: var(--rc-secondary); stroke-width: 1.5; stroke-dasharray: 3 5; opacity: 0; transition: opacity 180ms ease 300ms; }
 .ro-stage[data-aligned="true"] .ro-match { opacity: .58; }
 .ro-axis-label { fill: var(--rc-muted); font: 13px "JetBrains Mono", monospace; }
 
@@ -61,7 +62,7 @@
 .tr-stage[data-running="true"] .tr-collision, .tr-stage[data-running="done"] .tr-collision { animation: tr-show .2s ease .35s forwards; }
 .tr-label { fill: var(--rc-muted); font: 13px "JetBrains Mono", monospace; }
 .tr-start { fill: var(--rc-ink); }
-.tr-goal { fill: var(--rc-link); }
+.tr-goal { fill: var(--rc-secondary); }
 @keyframes tr-draw { to { stroke-dashoffset: 0; } }
 @keyframes tr-show { to { opacity: 1; } }
 
@@ -82,11 +83,11 @@
 .js-layer__index { display: block; margin-bottom: .35rem; color: var(--rc-muted); font: 600 .65rem/1 "JetBrains Mono", monospace; letter-spacing: .05em; text-transform: uppercase; }
 .js-layer__token { position: relative; z-index: 1; display: grid; place-items: center; min-height: 4rem; border: 1px solid var(--rc-line); border-radius: 50%; background: var(--rc-paper); color: var(--rc-muted); font: 600 clamp(.64rem, 1.8vw, .82rem)/1 "JetBrains Mono", monospace; transition: border-color 320ms ease, color 320ms ease, background 320ms ease, transform 320ms ease; }
 .js-layer:nth-child(3) .js-layer__token,
-.js-layer:nth-child(4) .js-layer__token { border-color: var(--rc-accent); color: var(--rc-accent); background: color-mix(in srgb, var(--rc-accent) 8%, var(--rc-paper)); }
+.js-layer:nth-child(4) .js-layer__token { border-color: var(--rc-secondary); color: var(--rc-secondary); background: color-mix(in srgb, var(--rc-secondary) 8%, var(--rc-paper)); }
 .js-stage[data-phase="input"] .js-layer__token { border-style: dashed; color: var(--rc-muted); background: var(--rc-paper); transform: scale(.9); }
 .js-stage[data-phase="input"] .js-layer__token span { opacity: .18; }
 .js-stage[data-phase="swap"] .js-layer:nth-child(3) .js-layer__token,
-.js-stage[data-phase="swap"] .js-layer:nth-child(4) .js-layer__token { border-color: var(--rc-link); color: var(--rc-link); background: color-mix(in srgb, var(--rc-link) 9%, var(--rc-paper)); transform: scale(1.06); }
+.js-stage[data-phase="swap"] .js-layer:nth-child(4) .js-layer__token { border-color: var(--rc-accent); color: var(--rc-accent); background: color-mix(in srgb, var(--rc-accent) 9%, var(--rc-paper)); transform: scale(1.06); }
 .js-output { display: flex; align-items: center; justify-content: center; gap: .75rem; margin: 1.25rem auto 0; color: var(--rc-muted); font-size: .8rem; }
 .js-output__value { display: grid; place-items: center; min-width: 3rem; min-height: 3rem; border: 1px solid var(--rc-ink); border-radius: 6px; color: var(--rc-ink); font: 600 1.45rem/1 "JetBrains Mono", monospace; transition: border-color 320ms ease, color 320ms ease, transform 320ms ease; }
 .js-stage[data-phase="swap"] .js-output__value { border-color: var(--rc-accent); color: var(--rc-accent); transform: translateY(-2px); }
@@ -139,7 +140,7 @@
 }
 
 @media (prefers-color-scheme: dark) {
-  .rc-widget { --rc-paper: var(--color-bg, #16161a); --rc-paper-soft: var(--color-surface, #202026); --rc-ink: var(--color-text, #e8e6e1); --rc-muted: var(--color-text-muted, #aaa6a0); --rc-line: var(--color-border, #3c3b42); --rc-accent: var(--color-accent, #e0713f); --rc-link: var(--color-link, #5fb0a8); }
+  .rc-widget { --rc-paper: var(--color-surface, #16161a); --rc-paper-soft: var(--color-surface-raised, #24242a); --rc-ink: var(--color-text, #e8e6e1); --rc-muted: var(--color-text-muted, #a3a3ad); --rc-line: var(--color-border, #757581); --rc-accent: var(--color-accent, #e0713f); --rc-secondary: var(--color-accent-secondary, #5fb0a8); --rc-link: var(--color-link, #e0713f); }
 }
 
 @media (prefers-reduced-motion: reduce) {
